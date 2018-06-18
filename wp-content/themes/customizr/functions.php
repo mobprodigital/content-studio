@@ -462,7 +462,7 @@ require_once( get_template_directory() . '/core/init-base.php' );
                 'menu_name'           => __( 'Genres', 'text_domain' ),
                 'parent_item_colon'   => __( 'Parent Genres', 'text_domain' ),
                 'all_items'           => __( 'All Genres', 'text_domain' ),
-                'view_item'           => __( 'View Genres', 'text_domain' ),
+                'view_item'           => __( 'View All Genres', 'text_domain' ),
                 'add_new_item'        => __( 'Add New Genres', 'text_domain' ),
                 'add_new'             => __( 'Add New', 'text_domain' ),
                 'edit_item'           => __( 'Edit Genres', 'text_domain' ),

@@ -132,97 +132,89 @@ require_once( get_template_directory() . '/core/init-base.php' );
         register_post_type( 'movie', $args );
      }
      
-    add_action( 'init', 'movie_post_type', 0 );
-
-    function add_movie_fields_meta_box() {
-        add_meta_box(
-            'movie_fields_meta_box', // $id
-            'movie', // $title
-            'show_movie_fields_meta_box', // $callback
-            'movie', // $screen
-            'normal', // $context
-            'high' // $priority
-        );
-    }
-    
-    add_action( 'add_meta_boxes', 'add_movie_fields_meta_box' );
-
-    function show_movie_fields_meta_box() {
-        global $post;  
-            $meta = get_post_meta( $post->ID, 'movie_fields', true ); ?>
-    
-        <input type="hidden" name="movie_meta_box_nonce" value="<?php echo wp_create_nonce( basename(__FILE__) ); ?>">
-    
-        <p>
-            <label for="movie_fields[text]">Release Year</label>
-            <br>
-            <input type="text" name="movie_fields[text]" id="movie_fields[text]" class="regular-text" placeholder= "enter release year" value="<?php if (is_array($meta) && isset($meta['text'])) { echo $meta['text']; } ?>">
-        </p>
-        <p>
-            <label for="movie_fields[text]">Geners</label>
-            <br>
-            <input type="text" name="movie_fields[text]" id="movie_fields[text]" class="regular-text" placeholder="enter geners" value="<?php if (is_array($meta) && isset($meta['text'])) {	echo $meta['text']; } ?>">
-        </p>
-        <p>
-            <label for="movie_fields[textarea]">Cast</label>
-            <br>
-            <textarea name="movie_fields[textarea]" id="movie_fields[textarea]" placeholder= "enter cast" rows="3" cols="30" style="width:500px;"><?php echo $meta['textarea']; ?></textarea>
-        </p>
-        
-
-        <p>
-        <label for="movie_fields[select]">Ratings</label>
-        <br>
-        <select name="movie_fields[select]" id="movie_fields[select]">
-                <option value="option-one" <?php selected( $meta['select'], 'option-one' ); ?>> One</option>
-                <option value="option-two" <?php selected( $meta['select'], 'option-two' ); ?>> Two</option>
-                <option value="option-three" <?php selected( $meta['select'], 'option-three' ); ?>> Three</option>
-                <option value="option-four" <?php selected( $meta['select'], 'option-four' ); ?>> Four</option>
-                <option value="option-five" <?php selected( $meta['select'], 'option-five' ); ?>> Five</option>
-        </select>
-        </p>
-
-        <?php
-        function save_movie_fields_meta( $post_id ) {   
-            // verify nonce
-            if ( isset($_POST['movie_meta_box_nonce']) 
-                    && !wp_verify_nonce( $_POST['movie_meta_box_nonce'], basename(__FILE__) ) ) {
-                    return $post_id; 
-                }
-            // check autosave
-            if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-                return $post_id;
-            }
-            // check permissions
-            if (isset($_POST['post_type'])) { //Fix 2
-                if ( 'page' === $_POST['post_type'] ) {
-                    if ( !current_user_can( 'edit_page', $post_id ) ) {
-                        return $post_id;
-                    } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
-                        return $post_id;
-                    }  
-                }
-            }
+    add_action( 'init', 'movie_post_type', 0 );  
+    ?>
             
-            $old = get_post_meta( $post_id, 'movie_fields', true );
-                if (isset($_POST['movie_fields'])) { //Fix 3
-                    $new = $_POST['movie_fields'];
-                    if ( $new && $new !== $old ) {
-                        update_post_meta( $post_id, 'movie_fields', $new );
-                    } elseif ( '' === $new && $old ) {
-                        delete_post_meta( $post_id, 'movie_fields', $old );
-                    }
-                }
+
+     <!-- All fields will go here -->
+    
+     <?php 
+   
+    // movie metabox start
+
+    add_action( 'add_meta_boxes', 'movie_meta_box' );
+        function movie_meta_box() {
+            add_meta_box( 
+                'movie_meta_box',
+                __( 'movie', 'myplugin_textdomain' ),
+                'movie_meta_box_content',
+                'movie',
+                'normal',
+                'high'
+            );
         }
-        add_action( 'save_post', 'save_movie_fields_meta' ); ?>
 
-        <!-- All fields will go here -->
-    
-        <?php }
+        function movie_meta_box_content( $post ) {
+            wp_nonce_field( plugin_basename( __FILE__ ), 'movie_meta_box_content_nonce' );
+            echo '<label for="movie_year"></label>';
+            echo 'Release Date: <input type="text" id="movie_year" value="'. get_post_meta( get_the_ID(), 'movie_year', true ) .'" name="movie_year" placeholder="enter release date" />';
+            
+            echo '<label for="movie_genres"></label>';
+            echo 'Genres Type: <input type="text" id="movie_genres" value="'. get_post_meta( get_the_ID(), 'movie_genres', true ) .'" name="movie_genres" placeholder="enter genres type" />';
+          }
+          add_action( 'save_post', 'movie_meta_box_save' );
+       
+         function movie_meta_box_save( $post_id ) {
 
+            if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+            return;
+
+            if ( !wp_verify_nonce( $_POST['movie_meta_box_content_nonce'], plugin_basename( __FILE__ ) ) )
+            return;
+
+            if ( 'page' == $_POST['post_type'] ) {
+                if ( !current_user_can( 'edit_page', $post_id ) )
+                return;
+            } else {
+                if ( !current_user_can( 'edit_post', $post_id ) )
+                return;
+            }
+            $movie_year = $_POST['movie_year'];
+            update_post_meta( $post_id, 'movie_year', $movie_year );
+
+            $movie_genres = $_POST['movie_genres'];
+            update_post_meta( $post_id, 'movie_genres', $movie_genres );
+        }
+               
+
+    // movie metabox End
     
-         //  Video Custom Post Type
-    
+    // movie Taxonomies Start    
+
+    function taxonomies_movie() {
+        $labels = array(
+          'name'              => _x( 'movie Categories', 'taxonomy general name' ),
+          'singular_name'     => _x( 'movie Category', 'taxonomy singular name' ),
+          'search_items'      => __( 'Search movie Categories' ),
+          'all_items'         => __( 'All movie Categories' ),
+          'parent_item'       => __( 'Parent movie Category' ),
+          'parent_item_colon' => __( 'Parent movie Category:' ),
+          'edit_item'         => __( 'Edit movie Category' ), 
+          'update_item'       => __( 'Update movie Category' ),
+          'add_new_item'      => __( 'Add New movie Category' ),
+          'new_item_name'     => __( 'New movie Category' ),
+          'menu_name'         => __( 'movie Categories' ),
+        );
+        $args = array(
+          'labels' => $labels,
+          'hierarchical' => true,
+        );
+        register_taxonomy( 'movie_category', 'movie', $args );
+      }
+      add_action( 'init', 'taxonomies_movie', 0 );
+
+    // movie Taxonomies End    
+
     function video_post_type(){
         $labels = array(
             'name'                => _x( 'Video', 'Post Type General Name', 'text_domain' ),
@@ -265,7 +257,8 @@ require_once( get_template_directory() . '/core/init-base.php' );
      
     add_action( 'init', 'video_post_type', 0 );
 
-  
+    
+
 
     // video metabox start
         function video_add_metabox() {
@@ -462,7 +455,7 @@ require_once( get_template_directory() . '/core/init-base.php' );
                 'menu_name'           => __( 'Genres', 'text_domain' ),
                 'parent_item_colon'   => __( 'Parent Genres', 'text_domain' ),
                 'all_items'           => __( 'All Genres', 'text_domain' ),
-                'view_item'           => __( 'View All Genres', 'text_domain' ),
+                'view_item'           => __( 'View Genres', 'text_domain' ),
                 'add_new_item'        => __( 'Add New Genres', 'text_domain' ),
                 'add_new'             => __( 'Add New', 'text_domain' ),
                 'edit_item'           => __( 'Edit Genres', 'text_domain' ),

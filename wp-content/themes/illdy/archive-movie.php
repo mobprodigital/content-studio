@@ -33,22 +33,38 @@ get_header(); ?>
 				'post_type' => 'movie'
 			);
 
+			
 			$the_query = new WP_Query($args);
-
-		if ( $the_query->have_posts() ) : ?>
-		
-			<div class="row ">
+			
+			if ( $the_query->have_posts() ) : ?>
+			
 			<?php
 			/* Start the Loop */
-			while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-							
-				<div class="col">
-					<figure><?php the_post_thumbnail('thumbnail'); ?></figure>
-					<?php echo '<h5>'.the_title(). '</h5>'; ?>
-				</div> <!--col-->
-					
-				
+			while ( $the_query->have_posts() ) : $the_query->the_post(); 
+			
+			
 
+			?>
+							
+				<div class="col-sm-2">
+			
+				 <figure><?php the_post_thumbnail('thumbnail'); ?></figure> 
+					<?php echo '<h5>'.the_title(). '</h5>'; ?>
+					<?php
+
+					$terms = get_the_terms( get_the_ID(), 'movie_category' );
+					if($terms){
+						echo '<pre><code>';
+						foreach($terms as $m_cat){
+							 echo print_r($m_cat->name, true); 
+
+						}
+						echo '</code></pre>';
+					}
+					
+					?>
+				</div> <!--col-->
+				
 			 <?php 
 				/*
 				 * Include the Post-Format-specific template for the content.

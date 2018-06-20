@@ -324,11 +324,13 @@ function taxonomies_movie() {
 	  'labels' => $labels,
 	  'hierarchical' => true,
 	);
-	register_taxonomy( 'movie_category', 'movie', $args );
+	register_taxonomy( 'movie_category', array('movie'), $args );
   }
   add_action( 'init', 'taxonomies_movie', 0 );
 
 // movies category texonomy end
+
+
 
 // movie metabox start
 
@@ -346,26 +348,33 @@ function product_price_box() {
 }
 
 function movie_info_metabox_fun( $post ) {
+	$movie_post_id = get_the_ID();
 	wp_nonce_field( plugin_basename( __FILE__ ), 'movie_info_metabox_fun_nonce' );
 	$mov_html = '<table style="width:100%">' 
 			 		.'<tr>' 
 			 			.'<td>' 
 			 				.'<label style="width:100%" for="mov_release_year">Release year</label>'
-			 				.'<input style="width:100%" type="text" id="mov_release_year"  value="'. get_post_meta( get_the_ID(), 'mov_release_year', true ) .'" name="mov_release_year" placeholder="e.g YYYY" />'
+			 				.'<input style="width:100%" type="text" id="mov_release_year"  value="'. get_post_meta( $movie_post_id, 'mov_release_year', true ) .'" name="mov_release_year" placeholder="e.g YYYY" />'
 			 			.'</td>' 
 			 			.'<td>' 
 			 				.'<label style="width:100%" for="mov_duration">Duration</label>'
-			 				.'<input style="width:100%" type="text" id="mov_duration"  value="'. get_post_meta( get_the_ID(), 'mov_duration', true ) .'" name="mov_duration" placeholder="e.g 2hr 4min 3sec" />'
+			 				.'<input style="width:100%" type="text" id="mov_duration"  value="'. get_post_meta( $movie_post_id, 'mov_duration', true ) .'" name="mov_duration" placeholder="e.g 2hr 4min 3sec" />'
 			 			.'</td>' 
 					.'</tr>'
 					.'<tr>'
 			 			.'<td>' 
 			 				.'<label style="width:100%" for="mov_cast">Cast</label>'
-			 				.'<input style="width:100%" type="text" id="mov_cast"  value="'. get_post_meta( get_the_ID(), 'mov_cast', true ) .'" name="mov_cast" placeholder="e.g Aamir Khan, Tom Cruise" />'
+			 				.'<input style="width:100%" type="text" id="mov_cast"  value="'. get_post_meta( $movie_post_id, 'mov_cast', true ) .'" name="mov_cast" placeholder="e.g Aamir Khan, Tom Cruise" />'
 			 			.'</td>' 
 			 			.'<td>' 
-			 				.'<label style="width:100%" for="mov_language">Language</label>'
-			 				.'<input style="width:100%" type="text" id="mov_language"  value="'. get_post_meta( get_the_ID(), 'mov_language', true ) .'" name="mov_language" placeholder="e.g Hindi, English, Tamil" />'
+			 				.'<label style="width:100%" for="mov_country">Country</label>'
+			 				.'<input style="width:100%" type="text" id="mov_country"  value="'. get_post_meta( $movie_post_id, 'mov_country', true ) .'" name="mov_country" placeholder="e.g India, US, UK" />'
+						 .'</td>'
+					.'</tr>'
+					.'<tr>'
+						 .'<td colspan="2">' 
+							 .'<label style="width:100%" for="mov_embedded_code" style="width:100%" >Enter embedded code</label>'
+							 .'<textarea style="width:100%" id="mov_embedded_code" name="mov_embedded_code" placeholder="paste embedded code here"></textarea>' 
 			 			.'</td>' 
 					 .'</tr>'
 				.'</table>'; 
@@ -373,7 +382,6 @@ function movie_info_metabox_fun( $post ) {
 	
 	echo $mov_html;
   }
-
 
   add_action( 'save_post', 'movie_info_save_fun' );
 function movie_info_save_fun( $post_id ) {
@@ -401,15 +409,194 @@ function movie_info_save_fun( $post_id ) {
   $mov_cast = $_POST['mov_cast'];
   update_post_meta( $post_id, 'mov_cast', $mov_cast );
  
-  $mov_language = $_POST['mov_language'];
-  update_post_meta( $post_id, 'mov_language', $mov_language );
-}
+  $mov_country = $_POST['mov_country'];
+  update_post_meta( $post_id, 'mov_country', $mov_country );
+  }
 
 // movie metabox end
-
-
 // custom post Movie End
 
+
+//....... custom post Video Songs Start (Second Custom Post Position 2) .....//
+
+function videosong_custom_post() {
+	$labels = array(
+	  'name'               => _x( 'video songs', 'post type general name' ),
+	  'singular_name'      => _x( 'Video Songs', 'post type singular name' ),
+	  'add_new'            => _x( 'Add New', 'videosong' ),
+	  'add_new_item'       => __( 'Add New videosong' ),
+	  'edit_item'          => __( 'Edit videosong' ),
+	  'new_item'           => __( 'New videosong' ),
+	  'all_items'          => __( 'All Video Songs' ),
+	  'view_item'          => __( 'View videosong' ),
+	  'search_items'       => __( 'Search videosong' ),
+	  'not_found'          => __( 'No videos songs found' ),
+	  'not_found_in_trash' => __( 'No videos songs found in the Trash' ), 
+	  'parent_item_colon'  => '',
+	  'menu_name'          => 'Video Songs'
+	);
+	$args = array(
+	  'labels'        => $labels,
+	  'description'   => 'Holds our products and product specific data',
+	  'public'        => true,
+	  'menu_position' => 5,
+	  'supports'      => array( 'title', 'editor', 'thumbnail', 'comments' ),
+	  'has_archive'   => true,
+	);
+	register_post_type( 'videosong', $args ); 
+  }
+  add_action( 'init', 'videosong_custom_post' );
+
+// Video Songs category texonomy start
+
+function taxonomies_videosong() {
+	$labels = array(
+	  'name'              => _x( 'Video Song Categories', 'taxonomy general name' ),
+	  'singular_name'     => _x( 'Video Song Category', 'taxonomy singular name' ),
+	  'search_items'      => __( 'Search Video Song Categories' ),
+	  'all_items'         => __( 'All Video Song Categories' ),
+	  'parent_item'       => __( 'Parent Video Song Category' ),
+	  'parent_item_colon' => __( 'Parent Video Song Category:' ),
+	  'edit_item'         => __( 'Edit Video Song Category' ), 
+	  'update_item'       => __( 'Update Video Song Category' ),
+	  'add_new_item'      => __( 'Add New Video Song Category' ),
+	  'new_item_name'     => __( 'New Video Song Category' ),
+	  'menu_name'         => __( 'Video Song Categories' ),
+	);
+	$args = array(
+	  'labels' => $labels,
+	  'hierarchical' => true,
+	);
+	register_taxonomy( 'videosong_category', array('videosong'), $args );
+  }
+  add_action( 'init', 'taxonomies_videosong', 0 );
+
+// Video Song category texonomy end
+
+// Video Song metabox start
+
+add_action( 'add_meta_boxes', 'product_box' );
+function product_box() {
+
+    add_meta_box( 
+        'videosong_info_metabox',
+        __( 'Video Songs Info'),
+        'videosong_info_metabox_fun',
+        'videosong',
+        'normal',
+        'high'
+    );
+}
+
+function videosong_info_metabox_fun( $post ) {
+	$vidsong_post_id = get_the_ID();
+	wp_nonce_field( plugin_basename( __FILE__ ), 'videosong_info_metabox_fun_nonce' );
+	$vidsong_html = '<table style="width:100%">' 
+			 		.'<tr>' 
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vidsong_release_year">Release year</label>'
+			 				.'<input style="width:100%" type="text" id="vidsong_release_year"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_release_year', true ) .'" name="vidsong_release_year" placeholder="e.g YYYY" />'
+			 			.'</td>' 
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vidsong_duration">Duration</label>'
+			 				.'<input style="width:100%" type="text" id="vidsong_duration"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_duration', true ) .'" name="vidsong_duration" placeholder="e.g 2min 30sec" />'
+			 			.'</td>' 
+					.'</tr>'
+					.'<tr>'
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vidsong_artist">Artist</label>'
+			 				.'<input style="width:100%" type="text" id="vidsong_artist"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_artist', true ) .'" name="vidsong_artist" placeholder="e.g Taylor Swift,Enrique Iglesias, A.R. Rahman " />'
+			 			.'</td>' 
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vidsong_country">Country</label>'
+			 				.'<input style="width:100%" type="text" id="vidsong_country"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_country', true ) .'" name="vidsong_country" placeholder="e.g India, US, UK" />'
+						 .'</td>'
+					.'</tr>'
+					.'<tr>'
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vidsong_album">Album</label>'
+			 				.'<input style="width:100%" type="text" id="vidsong_album"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_album', true ) .'" name="vidsong_album" placeholder="e.g 2 states, T-Series, Migos" />'
+			 			.'</td>' 
+			 		.'<tr>'
+						 .'<td colspan="2">' 
+							 .'<label style="width:100%" for="vidsong_embedded_code" style="width:100%" >Enter embedded code</label>'
+							 .'<textarea style="width:100%" id="vidsong_embedded_code" name="vidsong_embedded_code" placeholder="paste embedded code here"></textarea>' 
+			 			.'</td>' 
+					 .'</tr>'
+				.'</table>'; 
+
+	
+	echo $vidsong_html;
+  }
+
+  add_action( 'save_post', 'videosong_info_save_fun' );
+function videosong_info_save_fun( $post_id ) {
+
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+  return;
+
+  if ( !wp_verify_nonce( $_POST['videosong_info_metabox_fun_nonce'], plugin_basename( __FILE__ ) ) )
+  retursongn;
+
+  if ( 'page' == $_POST['post_type'] ) {
+    if ( !current_user_can( 'edit_page', $post_id ) )
+    return;
+  } else {
+    if ( !current_user_can( 'edit_post', $post_id ) )
+    return;
+  }
+
+  $vidsong_release_year = $_POST['vidsong_release_year'];
+  update_post_meta( $post_id, 'vidsong_release_year', $vidsong_release_year );
+  
+  $vidsong_duration = $_POST['vidsong_duration'];
+  update_post_meta( $post_id, 'vidsong_duration', $vidsong_duration );
+  
+  $vidsong_artist = $_POST['vidsong_artist'];
+  update_post_meta( $post_id, 'vidsong_artist', $vidsong_artist );
+ 
+  $vidsong_country = $_POST['vidsong_country'];
+  update_post_meta( $post_id, 'vidsong_country', $vidsong_country );
+
+  $vidsong_album = $_POST['vidsong_album'];
+  update_post_meta( $post_id, 'vidsong_album', $vidsong_album );
+  
+}
+
+// vidsong metabox end
+
+// custom post video Song End
+
+
+
+
+
+
+// language category texonomy start
+
+function taxonomies_language() {
+	$labels = array(
+	  'name'              => _x( 'language Categories', 'taxonomy general name' ),
+	  'singular_name'     => _x( 'language Category', 'taxonomy singular name' ),
+	  'search_items'      => __( 'Search language Categories' ),
+	  'all_items'         => __( 'All language Categories' ),
+	  'parent_item'       => __( 'Parent language Category' ),
+	  'parent_item_colon' => __( 'Parent language Category:' ),
+	  'edit_item'         => __( 'Edit language Category' ), 
+	  'update_item'       => __( 'Update language Category' ),
+	  'add_new_item'      => __( 'Add New language Category' ),
+	  'new_item_name'     => __( 'New language Category' ),
+	  'menu_name'         => __( 'language Categories' ),
+	);
+	$args = array(
+	  'labels' => $labels,
+	  'hierarchical' => true,
+	);
+	register_taxonomy( 'language_category', array('movie','videosong', 'post'), $args );
+  }
+  add_action( 'init', 'taxonomies_language', 0 );
+
+// language category texonomy end
 
 //enque script
 
@@ -419,6 +606,5 @@ function add_custom_script() {
 	wp_register_script('custom_script', '/wp-content/themes/royale-news/js/custom/custom.js', array('jquery', 'filterizr_plugin'),'1.1', true);
 	wp_enqueue_script('filterizr_plugin');
 	wp_enqueue_script('custom_script');
-}
-	  
+}	  
 add_action( 'wp_enqueue_scripts', 'add_custom_script' ); 

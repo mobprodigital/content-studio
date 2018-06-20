@@ -33,6 +33,7 @@ get_header(); ?>
 						get_sidebar();
 					endif;
 				?>
+				
 				<div class="<?php echo esc_attr( $class ); ?> sticky-section">
 					<div class="row clearfix news-section">
 						<div class="col-md-12">
@@ -49,6 +50,7 @@ get_header(); ?>
 
 							endwhile;
 						?>
+						
 						</div><!-- .col-md-12 -->
 						<?php
 							/**

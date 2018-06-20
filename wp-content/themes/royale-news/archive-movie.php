@@ -74,15 +74,15 @@
                                         $featured_img_url = get_the_post_thumbnail_url($current_post_id);
                                     }
                                     $movie_release_year = get_post_meta( $current_post_id, 'mov_release_year', true );
-                                    $movie_language = get_post_meta( $current_post_id, 'mov_language', true );
-                                    $movie_list_html.='<section data-category="'.implode(',', $single_movie_cat_arr).'" class="filtr-item col-sm-3">'
+                                    $movie_country = get_post_meta( $current_post_id, 'mov_country', true );
+                                    $movie_list_html.='<section data-category="'.implode(',', $single_movie_cat_arr).'" class="filtr-item col-sm-3 archive-single-mov">'
                                                         .'<div class="mov-arch-single-wrap">'
                                                             .'<a href="'.get_the_permalink().'">'
                                                                 .'<div class="mov-arch-img" style="background-image:url('.$featured_img_url.')"></div>'
                                                             .'</a>'
                                                             .'<div class="mov-arch-content">'
                                                                 .'<h4>'.get_the_title().'</h4>'
-                                                                .'<div class="mov-extra-info-text">'.$movie_release_year.', '.$movie_language.'</div>'
+                                                                .'<div class="mov-extra-info-text">'.$movie_release_year.', '.$movie_country.'</div>'
                                                                 .'<div class="mov-extra-info-text">'.implode(',', $single_movie_cat_arr).'</div>'
                                                             .'</div>'
                                                         .'</div><!--mov-arch-single-wrap-->'

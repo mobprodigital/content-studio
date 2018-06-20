@@ -29,50 +29,50 @@ get_header(); ?>
                         
                         while ( have_posts() ) : the_post();
                         $current_post_id = get_the_ID();
-                        $single_movie_cat = wp_get_post_terms( $current_post_id, 'movie_category');
-                        $single_movie_cat_arr = array();
-                        foreach($single_movie_cat as $s_m_cat){
-                            $single_movie_cat_arr[] = $s_m_cat->name;
+                        $single_videosong_cat = wp_get_post_terms( $current_post_id, 'videosong_category');
+                        $single_videosong_cat_arr = array();
+                        foreach($single_videosong_cat as $s_m_cat){
+                            $single_videosong_cat_arr[] = $s_m_cat->name;
                         }
                         
-                        $single_movie_lang = wp_get_post_terms( $current_post_id, 'language_category');
-                        $single_movie_lang_arr = array();
-                        foreach($single_movie_lang as $s_m_cat){
-                            $single_movie_lang_arr[] = $s_m_cat->name;
+                        $single_videosong_lang = wp_get_post_terms( $current_post_id, 'language_category');
+                        $single_videosong_lang_arr = array();
+                        foreach($single_videosong_lang as $s_m_cat){
+                            $single_videosong_lang_arr[] = $s_m_cat->name;
                         }
                         
-                        $movie_release_year = get_post_meta( $current_post_id, 'mov_release_year', true );
-                        $movie_country = get_post_meta( $current_post_id, 'mov_country', true );
-                        $movie_duration = get_post_meta( $current_post_id, 'mov_duration', true );
-                        $movie_cast = get_post_meta( $current_post_id, 'mov_cast', true );
+                        $videosong_release_year = get_post_meta( $current_post_id, 'vidsong_release_year', true );
+                        $videosong_country = get_post_meta( $current_post_id, 'vidsong_country', true );
+                        $videosong_duration = get_post_meta( $current_post_id, 'vidsong_duration', true );
+                        $videosong_artist = get_post_meta( $current_post_id, 'vidsong_artist', true );
 
-                        $movie_single_html.= '<section>'
-                                            .'<div class = "single-movie_show">'
+                        $videosong_single_html.= '<section>'
+                                            .'<div class = "single-videosong_show">'
                                                 .get_the_post_thumbnail($current_post_id)
                                             .'</div>'
                                             .'</br>'
                                             .'<div>'
                                                 
                                                 .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
-                                                .'<div class="mov-info-list">'
+                                                .'<div class="vidsong-info-list">'
                                                     .'<table class="table table-bordered table-inline">'
-                                                        .'<tr><th>Release Year</th><td> '.$movie_release_year.'</td></tr>'
-                                                        .'<tr><th>Duration</th><td> '.$movie_duration.'</td></tr>'
-                                                        .'<tr><th>Country</th><td> '.$movie_country.'</td></tr>'
-                                                        .'<tr><th>Cast</th><td> '.$movie_cast.'</td></tr>'
-                                                        .'<tr><th>Genres </th><td>'.implode(',', $single_movie_cat_arr).'</td></tr>'
-                                                        .'<tr><th>Language </th><td>'.implode(',', $single_movie_lang_arr).'</td></tr>'
-                                                    .'</table><!--mov-info-list-->'
+                                                        .'<tr><th>Release Year</th><td> '.$videosong_release_year.'</td></tr>'
+                                                        .'<tr><th>Duration</th><td> '.$videosong_duration.'</td></tr>'
+                                                        .'<tr><th>Country</th><td> '.$videosong_country.'</td></tr>'
+                                                        .'<tr><th>Artist</th><td> '.$videosong_artist.'</td></tr>'
+                                                        .'<tr><th>Genres </th><td>'.implode(',', $single_videosong_cat_arr).'</td></tr>'
+                                                        .'<tr><th>Language </th><td>'.implode(',', $single_videosong_lang_arr).'</td></tr>'
+                                                    .'</table><!--vidsong-info-list-->'
                                                 .'</div>'
-                                                .'<div class="movie-content">'
+                                                .'<div class="videosong-content">'
                                                 .get_the_content()
-                                                .'</div><!--movie-content-->'
+                                                .'</div><!--videosong-content-->'
                                             .'</div>'
                                             .'</section>';
                         
                             
                           
-                            echo $movie_single_html;
+                            echo $videosong_single_html;
                             
 							/**
 							* Hook - royale_news_post_navigation.

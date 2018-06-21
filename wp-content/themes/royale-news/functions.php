@@ -478,7 +478,7 @@ function taxonomies_videosong() {
 add_action( 'add_meta_boxes', 'product_box' );
 function product_box() {
 
-    add_meta_box( 
+    add_meta_box(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
         'videosong_info_metabox',
         __( 'Video Songs Info'),
         'videosong_info_metabox_fun',
@@ -567,12 +567,65 @@ function videosong_info_save_fun( $post_id ) {
 
 // custom post video Song End
 
-
-
-
-
-
 // language category texonomy start
+
+
+//....... custom post Video Start (Third Custom Post Position 3) .....//
+
+function video_custom_post() {
+	$labels = array(
+	  'name'               => _x( 'video', 'post type general name' ),
+	  'singular_name'      => _x( 'Video', 'post type singular name' ),
+	  'add_new'            => _x( 'Add New', 'video' ),
+	  'add_new_item'       => __( 'Add New video' ),
+	  'edit_item'          => __( 'Edit video' ),
+	  'new_item'           => __( 'New video' ),
+	  'all_items'          => __( 'All Video' ),
+	  'view_item'          => __( 'View video' ),
+	  'search_items'       => __( 'Search video' ),
+	  'not_found'          => __( 'No videos songs found' ),
+	  'not_found_in_trash' => __( 'No videos songs found in the Trash' ), 
+	  'parent_item_colon'  => '',
+	  'menu_name'          => 'Video'
+	);
+	$args = array(
+	  'labels'        => $labels,
+	  'description'   => 'Holds our products and product specific data',
+	  'public'        => true,
+	  'menu_position' => 5,
+	  'supports'      => array( 'title', 'editor', 'thumbnail', 'comments' ),
+	  'has_archive'   => true,
+	);
+	register_post_type( 'video', $args ); 
+  }
+  add_action( 'init', 'video_custom_post' );
+
+// Video category texonomy start
+
+function taxonomies_video() {
+	$labels = array(
+	  'name'              => _x( 'Video Categories', 'taxonomy general name' ),
+	  'singular_name'     => _x( 'Video Category', 'taxonomy singular name' ),
+	  'search_items'      => __( 'Search Video Categories' ),
+	  'all_items'         => __( 'All Video Categories' ),
+	  'parent_item'       => __( 'Parent Video Category' ),
+	  'parent_item_colon' => __( 'Parent Video Category:' ),
+	  'edit_item'         => __( 'Edit Video Category' ), 
+	  'update_item'       => __( 'Update Video Category' ),
+	  'add_new_item'      => __( 'Add New Video Category' ),
+	  'new_item_name'     => __( 'New Video Category' ),
+	  'menu_name'         => __( 'Video Categories' ),
+	);
+	$args = array(
+	  'labels' => $labels,
+	  'hierarchical' => true,
+	);
+	register_taxonomy( 'video_category', array('video'), $args );
+  }
+  add_action( 'init', 'taxonomies_video', 0 );
+
+// Video category texonomy end
+
 
 function taxonomies_language() {
 	$labels = array(
@@ -592,7 +645,7 @@ function taxonomies_language() {
 	  'labels' => $labels,
 	  'hierarchical' => true,
 	);
-	register_taxonomy( 'language_category', array('movie','videosong', 'post'), $args );
+	register_taxonomy( 'language_category', array('movie','videosong', 'video', 'post'), $args );
   }
   add_action( 'init', 'taxonomies_language', 0 );
 

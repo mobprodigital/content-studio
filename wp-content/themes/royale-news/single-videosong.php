@@ -25,6 +25,7 @@ get_header(); ?>
 			?>
 			<div >
 				<div class="clearfix news-section">
+                    <div class= "row">
 					<?php
                         
                         while ( have_posts() ) : the_post();
@@ -46,14 +47,14 @@ get_header(); ?>
                         $videosong_duration = get_post_meta( $current_post_id, 'vidsong_duration', true );
                         $videosong_artist = get_post_meta( $current_post_id, 'vidsong_artist', true );
 
-                        $videosong_single_html.= '<section>'
+                        $videosong_single_html.= '<section class="col-sm-8">'
                                             .'<div class = "single-videosong_show">'
+                                              .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
                                                 .get_the_post_thumbnail($current_post_id)
                                             .'</div>'
                                             .'</br>'
                                             .'<div>'
                                                 
-                                                .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
                                                 .'<div class="vidsong-info-list">'
                                                     .'<table class="table table-bordered table-inline">'
                                                         .'<tr><th>Release Year</th><td> '.$videosong_release_year.'</td></tr>'
@@ -70,7 +71,32 @@ get_header(); ?>
                                             .'</div>'
                                             .'</section>';
                         
-                            
+                                            $videosong_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h1 class="section-title">Recent Songs</h1></div>';
+                                            $recent_posts = wp_get_recent_posts(array(
+                                                'numberposts' => 5,
+                                                'post_status' => 'publish',
+                                                'post_type' => 'videosong',
+                                            ));
+                                            
+                                            $videosong_single_html.='<ul class="post-list-wrap">';
+                                            if(!empty($recent_posts)){
+                                                foreach( $recent_posts as $recent ){
+                                                    if($recent["ID"] == $current_post_id){
+                                                        continue;
+                                                    }
+                                                    $videosong_single_html.='<li class="post-list"><a class="recent-post-custom" href="' . get_permalink($recent["ID"]) . '">'
+                                                    .'<div class="recent-post-thumb" style="background-image:url('.get_the_post_thumbnail_url($recent["ID"]).')"></div>'
+                                                    .'<h5 class="recent-post-title">'.$recent["post_title"]
+                                                        .'<span class="recent-post-meta">'. get_post_meta( $recent["ID"], 'mov_duration', true ).'</span>'
+                                                    .'</h5>'
+                                                    .'</a></li> ';
+                                                }
+                                            } else{
+                                                $videosong_single_html.='<li class="post-list">No recent movie found</li> ';
+                                            }
+                                            
+                                            $videosong_single_html.='</ul>';
+                                            wp_reset_query();
                           
                             echo $videosong_single_html;
                             
@@ -82,13 +108,14 @@ get_header(); ?>
 							do_action( 'royale_news_post_navigation' );
 
 							// If comments are open or we have at least one comment, load up the comment template.
-							if ( comments_open() || get_comments_number() ) :
+							/* if ( comments_open() || get_comments_number() ) :
 								comments_template();
-							endif;
+							endif; */
 
 						endwhile; // End of the loop.
 
 					?>
+                    </div> <!-- row -->
 				</div><!-- .row.clearfix.news-section -->
 			</div>
 			<?php

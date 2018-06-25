@@ -373,8 +373,8 @@ function movie_info_metabox_fun( $post ) {
 					.'</tr>'
 					.'<tr>'
 						 .'<td colspan="2">' 
-							 .'<label style="width:100%" for="mov_embedded_code" style="width:100%" >Enter embedded code</label>'
-							 .'<textarea style="width:100%" id="mov_embedded_code" name="mov_embedded_code" placeholder="paste embedded code here"></textarea>' 
+							 .'<label style="width:100%" for="mov_embedded_code" >Enter embedded code</label>'
+							 .'<textarea style="width:100%" type= "text"  id="mov_embedded_code" name="mov_embedded_code"  placeholder="Paste embedded code here Ex: Youtube, Vimeo" required> '. get_post_meta( $movie_post_id, 'mov_embedded_code', true ) .' </textarea>' 
 			 			.'</td>' 
 					 .'</tr>'
 				.'</table>'; 
@@ -411,6 +411,9 @@ function movie_info_save_fun( $post_id ) {
  
   $mov_country = $_POST['mov_country'];
   update_post_meta( $post_id, 'mov_country', $mov_country );
+
+  $mov_embedded_code = $_POST['mov_embedded_code'];
+  update_post_meta( $post_id, 'mov_embedded_code', $mov_embedded_code );
   }
 
 // movie metabox end

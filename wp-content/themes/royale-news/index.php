@@ -64,9 +64,9 @@ get_header(); ?>
 				</div><!-- .esc_attr( $class ) -->
 
 				<?php
-					if( $sidebar_position == 'right' ) :
+					/* if( $sidebar_position == 'right' ) :
 						get_sidebar();
-					endif;
+					endif; */
 				?>
 			</div><!-- .row.section -->
 		</div><!-- .container -->

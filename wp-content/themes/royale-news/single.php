@@ -48,9 +48,9 @@ get_header(); ?>
 				</div><!-- .row.clearfix.news-section -->
 			</div>
 			<?php
-				if( $sidebar_position == 'right' ) :
+				/* if( $sidebar_position == 'right' ) :
 					get_sidebar();
-				endif;
+				endif; */
 			?>
 		</div><!-- .row.section -->
 	</div><!-- .container -->

@@ -843,3 +843,115 @@ object {
 .gallery-caption {
 	display: block;
 }
+
+/*...................  Custom CSS.............*/
+
+.mov-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+.mov-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.mov-arch-content {
+    padding: 10px 10px;
+}
+.mov-arch-content > h4 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+.mov-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+ul.filter-btns > li {
+    float: left;
+    padding: 10px 3px;
+}
+ul.filter-btns {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+.archive-single-mov{
+	margin-bottom: 20px;
+}
+
+table.table.table-inline{
+	width: auto;
+	max-width: auto;
+}
+
+/* Video Songs CSS Start */
+.vidsong-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+.vidsong-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.vidsong-arch-content {
+    padding: 10px 10px;
+}
+.vidsong-arch-content > h4 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+.vidsong-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Video Songs CSS end */
+
+
+/* Video CSS Start */
+.vid-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+.vid-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.vid-arch-content {
+    padding: 10px 10px;
+}
+.vid-arch-content > h4 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+.vid-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Video CSS end */
+
+.post-type-name-red {
+    display: inline-block;
+    background-color: red;
+    color: #fff;
+    padding: 5px 10px;
+}
+/* header Slider */
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    line-height: 1;
+    width: 100%;
+    height: 500px;
+}

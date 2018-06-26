@@ -41,18 +41,23 @@ get_header(); ?>
                         foreach($single_video_lang as $s_m_cat){
                             $single_video_lang_arr[] = $s_m_cat->name;
                         }
+                        $video_release_year = get_post_meta( $current_post_id, 'vid_release_year', true );
                         $video_duration = get_post_meta( $current_post_id, 'vid_duration', true );
-                        $video_artist = get_post_meta( $current_post_id, 'vid_artist', true );
+                        $video_embedded_code = get_post_meta( $current_post_id, 'vid_embedded_code', true );
 
+                        
                         $video_single_html.= '<section class="col-sm-8">'
                                             .'<div class = "single-video_show">'
-                                              .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
-                                                .get_the_post_thumbnail($current_post_id)
+                                              .'<div class="news-section-info clearfix"><h3 class= "section-title">'.get_the_title().'</h3></div>'
+                                               /*  .get_the_post_thumbnail($current_post_id) */
+                                               .   '<div class= "movie-frame">'.$video_embedded_code.'</div>'
                                             .'</div>'
                                             .'</br>'
                                             .'<div>'
                                                 .'<div class="vid-info-list">'
                                                     .'<table class="table table-bordered table-inline">'
+                                                        .'<tr><th>Release Year</th><td> '.$video_release_year.'</td></tr>'
+                                                        .'<tr><th>Duration</th><td> '.$video_duration.'</td></tr>'
                                                         .'<tr><th>Genres </th><td>'.implode(',', $single_video_cat_arr).'</td></tr>'
                                                         .'<tr><th>Language </th><td>'.implode(',', $single_video_lang_arr).'</td></tr>'
                                                     .'</table><!--vid-info-list-->'
@@ -63,7 +68,7 @@ get_header(); ?>
                                             .'</div>'
 											.'</section>';
 											
-											$video_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h1 class="section-title">Recent Video</h1></div>';
+											$video_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h3 class="section-title">Recent Video</h3></div>';
                                             $recent_posts = wp_get_recent_posts(array(
                                                 'numberposts' => 5,
                                                 'post_status' => 'publish',
@@ -79,7 +84,7 @@ get_header(); ?>
                                                     $video_single_html.='<li class="post-list"><a class="recent-post-custom" href="' . get_permalink($recent["ID"]) . '">'
                                                     .'<div class="recent-post-thumb" style="background-image:url('.get_the_post_thumbnail_url($recent["ID"]).')"></div>'
                                                     .'<h5 class="recent-post-title">'.$recent["post_title"]
-                                                        .'<span class="recent-post-meta">'. get_post_meta( $recent["ID"], 'mov_duration', true ).'</span>'
+                                                        .'<span class="recent-post-meta">'. get_post_meta( $recent["ID"], 'vid_duration', true ).'</span>'
                                                     .'</h5>'
                                                     .'</a></li> ';
                                                 }

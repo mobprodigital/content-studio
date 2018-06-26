@@ -52,7 +52,7 @@ get_header(); ?>
 
                         $movie_single_html.= '<section class="col-sm-8">'
                                             .'<div class = "single-movie_show">'
-                                            .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
+                                            .'<div class="news-section-info clearfix"><h3 class= "section-title">'.get_the_title().'</h3></div>'
                                               /*   .get_the_post_thumbnail($current_post_id) */
                                             .   '<div class= "movie-frame">'.$movie_embedded_code.'</div>'
                                             .'</div>'
@@ -75,7 +75,7 @@ get_header(); ?>
                                             .'</div>'
                                             .'</section><!--col-sm-8-->'; 
 
-                                            $movie_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h1 class="section-title">Recent Movies</h1></div>';
+                                            $movie_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h3 class="section-title">Recent Movies</h3></div>';
                                             $recent_posts = wp_get_recent_posts(array(
                                                 'numberposts' => 5,
                                                 'post_status' => 'publish',

@@ -330,8 +330,6 @@ function taxonomies_movie() {
 
 // movies category texonomy end
 
-
-
 // movie metabox start
 
 add_action( 'add_meta_boxes', 'product_price_box' );
@@ -520,11 +518,12 @@ function videosong_info_metabox_fun( $post ) {
 			 				.'<label style="width:100%" for="vidsong_album">Album</label>'
 			 				.'<input style="width:100%" type="text" id="vidsong_album"  value="'. get_post_meta( $vidsong_post_id, 'vidsong_album', true ) .'" name="vidsong_album" placeholder="e.g 2 states, T-Series, Migos" />'
 			 			.'</td>' 
-			 		.'<tr>'
+						 .'<tr>'
 						 .'<td colspan="2">' 
-							 .'<label style="width:100%" for="vidsong_embedded_code" style="width:100%" >Enter embedded code</label>'
-							 .'<textarea style="width:100%" id="vidsong_embedded_code" name="vidsong_embedded_code" placeholder="paste embedded code here"></textarea>' 
+							 .'<label style="width:100%" for="vidsong_embedded_code" >Enter embedded code</label>'
+							 .'<textarea style="width:100%" type= "text"  id="vidsong_embedded_code" name="vidsong_embedded_code"  placeholder="Paste embedded code here Ex: Youtube, Vimeo" required> '. get_post_meta( $movie_post_id, 'vidsong_embedded_code', true ) .' </textarea>' 
 			 			.'</td>' 
+					 .'</tr>' 
 					 .'</tr>'
 				.'</table>'; 
 
@@ -563,6 +562,9 @@ function videosong_info_save_fun( $post_id ) {
 
   $vidsong_album = $_POST['vidsong_album'];
   update_post_meta( $post_id, 'vidsong_album', $vidsong_album );
+
+  $vidsong_embedded_code = $_POST['vidsong_embedded_code'];
+  update_post_meta( $post_id, 'vidsong_embedded_code', $vidsong_embedded_code );
   
 }
 
@@ -628,6 +630,78 @@ function taxonomies_video() {
   add_action( 'init', 'taxonomies_video', 0 );
 
 // Video category texonomy end
+
+// Video metabox start
+
+add_action( 'add_meta_boxes', 'product_video_box' );
+function product_video_box() {
+
+    add_meta_box( 
+        'video_info_metabox',
+        __( 'video Info'),
+        'video_info_metabox_fun',
+        'video',
+        'normal',
+        'high'
+    );
+}
+
+function video_info_metabox_fun( $post ) {
+	$video_post_id = get_the_ID();
+	wp_nonce_field( plugin_basename( __FILE__ ), 'video_info_metabox_fun_nonce' );
+	$vid_html = '<table style="width:100%">' 
+			 		.'<tr>' 
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vid_release_year">Release year</label>'
+			 				.'<input style="width:100%" type="text" id="vid_release_year"  value="'. get_post_meta( $video_post_id, 'vid_release_year', true ) .'" name="vid_release_year" placeholder="e.g YYYY" />'
+			 			.'</td>' 
+			 			.'<td>' 
+			 				.'<label style="width:100%" for="vid_duration">Duration</label>'
+			 				.'<input style="width:100%" type="text" id="vid_duration"  value="'. get_post_meta( $video_post_id, 'vid_duration', true ) .'" name="vid_duration" placeholder="e.g 2hr 4min 3sec" />'
+			 			.'</td>' 
+					.'</tr>'
+					
+					.'<tr>'
+						 .'<td colspan="2">' 
+							 .'<label style="width:100%" for="vid_embedded_code" >Enter embedded code</label>'
+							 .'<textarea style="width:100%" type= "text"  id="vid_embedded_code" name="vid_embedded_code" placeholder=" Paste embedded code here Ex: Youtube, Vimeo" required> '. get_post_meta( $video_post_id, 'vid_embedded_code', true ) .' </textarea>' 
+			 			.'</td>' 
+					 .'</tr>'
+				.'</table>'; 
+
+	
+	echo $vid_html;
+  }
+
+  add_action( 'save_post', 'video_info_save_fun' );
+function video_info_save_fun( $post_id ) {
+
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+  return;
+
+  if ( !wp_verify_nonce( $_POST['video_info_metabox_fun_nonce'], plugin_basename( __FILE__ ) ) )
+  return;
+
+  if ( 'page' == $_POST['post_type'] ) {
+    if ( !current_user_can( 'edit_page', $post_id ) )
+    return;
+  } else {
+    if ( !current_user_can( 'edit_post', $post_id ) )
+    return;
+  }
+
+  $vid_release_year = $_POST['vid_release_year'];
+  update_post_meta( $post_id, 'vid_release_year', $vid_release_year );
+  
+  $vid_duration = $_POST['vid_duration'];
+  update_post_meta( $post_id, 'vid_duration', $vid_duration );
+  
+   $vid_embedded_code = $_POST['vid_embedded_code'];
+  update_post_meta( $post_id, 'vid_embedded_code', $vid_embedded_code );
+  }
+
+
+// video metabox end
 
 
 function taxonomies_language() {

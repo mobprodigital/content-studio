@@ -46,11 +46,13 @@ get_header(); ?>
                         $videosong_country = get_post_meta( $current_post_id, 'vidsong_country', true );
                         $videosong_duration = get_post_meta( $current_post_id, 'vidsong_duration', true );
                         $videosong_artist = get_post_meta( $current_post_id, 'vidsong_artist', true );
+                        $videosong_embedded_code = get_post_meta( $current_post_id, 'vidsong_embedded_code', true );
 
                         $videosong_single_html.= '<section class="col-sm-8">'
                                             .'<div class = "single-videosong_show">'
-                                              .'<div class="news-section-info clearfix"><h1 class= "section-title">'.get_the_title().'</h1></div>'
-                                                .get_the_post_thumbnail($current_post_id)
+                                              .'<div class="news-section-info clearfix"><h3 class= "section-title">'.get_the_title().'</h3></div>'
+                                               /*  .get_the_post_thumbnail($current_post_id) */
+                                               .   '<div class= "movie-frame">'.$videosong_embedded_code.'</div>'
                                             .'</div>'
                                             .'</br>'
                                             .'<div>'
@@ -71,7 +73,7 @@ get_header(); ?>
                                             .'</div>'
                                             .'</section>';
                         
-                                            $videosong_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h1 class="section-title">Recent Songs</h1></div>';
+                                            $videosong_single_html.= '<section class="col-sm-4"><div class="news-section-info clearfix"><h3 class="section-title">Recent Songs</h3></div>';
                                             $recent_posts = wp_get_recent_posts(array(
                                                 'numberposts' => 5,
                                                 'post_status' => 'publish',
@@ -87,7 +89,7 @@ get_header(); ?>
                                                     $videosong_single_html.='<li class="post-list"><a class="recent-post-custom" href="' . get_permalink($recent["ID"]) . '">'
                                                     .'<div class="recent-post-thumb" style="background-image:url('.get_the_post_thumbnail_url($recent["ID"]).')"></div>'
                                                     .'<h5 class="recent-post-title">'.$recent["post_title"]
-                                                        .'<span class="recent-post-meta">'. get_post_meta( $recent["ID"], 'mov_duration', true ).'</span>'
+                                                        .'<span class="recent-post-meta">'. get_post_meta( $recent["ID"], 'vidsong_duration', true ).'</span>'
                                                     .'</h5>'
                                                     .'</a></li> ';
                                                 }

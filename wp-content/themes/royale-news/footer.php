@@ -35,8 +35,8 @@
 	*
 	* @hooked royale_news_copyright_action - 10
 	*/
-	do_action( 'royale_news_copyright' );
-	
+/* 	do_action( 'royale_news_copyright' );
+ */	
 	/**
 	* Hook - royale_news_footer_menu.
 	*

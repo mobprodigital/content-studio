@@ -43,16 +43,16 @@
    	*
    	* @hooked royale_news_top_header_before_action - 10
    	*/
-   	do_action( 'royale_news_top_header_before' );
-
+/*    	do_action( 'royale_news_top_header_before' );
+ */
 
 	/**
 	* Hook - royale_news_ticker.
 	*
 	* @hooked royale_news_ticker_action - 10
 	*/
-	do_action( 'royale_news_ticker' );
-
+/* 	do_action( 'royale_news_ticker' );
+ */
 	/**
 	* Hook - royale_news_before_current_date.
 	*

@@ -60,16 +60,15 @@
                                         $featured_img_url = get_the_post_thumbnail_url($current_post_id);
                                     }
 									
-                                    $video_list_html.='<section class="filtr-item col-sm-3 archive-single-vid">'
+                                    $video_list_html.='<section class="filtr-item col-sm-3 archive-single-mov">'
 															.'<div class="vid-arch-single-wrap">'
 																.'<a href="'.get_the_permalink().'">'
                                                                     .'<div class="vid-arch-img" style="background-image:url('.$featured_img_url.')">'
                                                                         .'<div class="post-type-name-red">'.get_post_type_object(get_post_type($current_post_id))->label.'</div>'
                                                                     .'</div>'
 																.'</a>'
-																.'<div class="vid-arch-content">'
-																	.'<h4>'.get_the_title().'</h4>'
-																	
+																.'<div class="mov-arch-content">'
+																	.'<h4> <a href="'.get_the_permalink().'" title="'.get_the_title().'"> '.get_the_title().'</a></h4>'
 																.'</div>'
 															.'</div><!--vid-arch-single-wrap-->'
 														.'</section><!--col-->';

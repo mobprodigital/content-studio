@@ -40,17 +40,17 @@
                                         'taxonomy' => 'videosong_category',
                                         'hide_empty' => true,
                                     ) );
-                                    $vidsong_cat_html = '<ul class="filter-btns filters">';
-                                    $vidsong_cat_html.='<li><button type="button" class="filtr-button filtr" data-filter="all">All</button></li>';
+                                    $vidsong_cat_html = '<ul class="filters-filteringModeMulti filter-btns filters">';
+                                    /* $vidsong_cat_html.='<li><button type="button" class="filtr-button filtr" data-filter="all">All</button></li>'; */
                                     foreach($vidsong_category as $current_cat){
-                                        $vidsong_cat_html.='<li><button class="filtr-button filtr"  data-filter="'.$current_cat->slug.'" type="button" >'.$current_cat->name.'</button></li>';
+                                        $vidsong_cat_html.='<li><label><input type="checkbox"  value=".'.$current_cat->slug.'" class="filtr-button filter-check filtr" /><span class="fancy-filter">'.$current_cat->name.'</span></label></li>';
                                     }
                                     $vidsong_cat_html.='</ul>';
 
                                     echo $vidsong_cat_html;
 
 								/* Start the Loop */
-                                echo '<div class="row filtr-container-videosong">';
+                                echo '<div id="filter-container" class="row filtr-container-videosong filteringModeMulti">';
                                 $videosong_list_html='';
                                 
                                 while ( have_posts() ) : the_post();
@@ -76,13 +76,13 @@
 									$videosong_release_year = get_post_meta( $current_post_id, 'vidsong_release_year', true );
 									$vidsong_album = get_post_meta( $current_post_id, 'vidsong_album', true );
                                     $videosong_country = get_post_meta( $current_post_id, 'vidsong_country', true );
-                                    $videosong_list_html.='<section data-category="'.implode(',', $single_videosong_cat_arr).'" class="filtr-item col-sm-3 archive-single-vidsong">'
+                                    $videosong_list_html.='<section class="filtr-item col-sm-3 mix '.implode(' ', $single_videosong_cat_arr).' archive-single-vidsong">'
 															.'<div class="vidsong-arch-single-wrap">'
 																.'<a href="'.get_the_permalink().'">'
 																	.'<div class="vidsong-arch-img" style="background-image:url('.$featured_img_url.')"></div>'
 																.'</a>'
-																.'<div class="vidsong-arch-content">'
-																	.'<h4>'.get_the_title().'</h4>'
+																.'<div class="mov-arch-content">'
+																	.'<h4><a href="'.get_the_permalink().'" title="'.get_the_title().'">'.get_the_title().'</h4>'
 																	.'<div class="vidsong-extra-info-text">'.$videosong_release_year.', '.$videosong_country.'</div>'
 																	.'<div class="vidsong-extra-info-text">'.implode(',', $single_videosong_cat_arr).'</div>'
 																.'</div>'

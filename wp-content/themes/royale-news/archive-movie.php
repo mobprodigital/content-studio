@@ -40,17 +40,17 @@
                                         'taxonomy' => 'movie_category',
                                         'hide_empty' => true,
                                     ) );
-                                    $mov_cat_html = '<ul class="filter-btns filters">';
-                                    $mov_cat_html.='<li><button type="button" class="filtr-button filtr" data-filter="all">All</button></li>';
+                                    $mov_cat_html = '<ul class="filters-filteringModeMulti filter-btns filters">';
+                                    // $mov_cat_html.='<li class="filtr-active"><button value="all" type="button" class="filtr-button filtr" >All</button></li>';
                                     foreach($mov_category as $current_cat){
-                                        $mov_cat_html.='<li><button class="filtr-button filtr"  data-filter="'.$current_cat->slug.'" type="button" >'.$current_cat->name.'</button></li>';
+                                        $mov_cat_html.='<li><label><input type="checkbox"  value=".'.$current_cat->slug.'" class="filtr-button filter-check filtr" /><span class="fancy-filter">'.$current_cat->name.'</span></label></li>';
                                     }
                                     $mov_cat_html.='</ul>';
 
                                     echo $mov_cat_html;
 
 								/* Start the Loop */
-                                echo '<div class="row filtr-container-movie">';
+                                echo '<div id="filter-container" class="row filtr-container-movie filteringModeMulti">';
                                 $movie_list_html='';
                                 
                                 while ( have_posts() ) : the_post();
@@ -75,13 +75,13 @@
                                     }
                                     $movie_release_year = get_post_meta( $current_post_id, 'mov_release_year', true );
                                     $movie_country = get_post_meta( $current_post_id, 'mov_country', true );
-                                    $movie_list_html.='<section data-category="'.implode(',', $single_movie_cat_arr).'" class="filtr-item col-sm-3 archive-single-mov">'
+                                    $movie_list_html.='<section class="col-sm-3 archive-single-mov mix '.implode(' ', $single_movie_cat_arr).'">'
                                                         .'<div class="mov-arch-single-wrap">'
                                                             .'<a href="'.get_the_permalink().'">'
                                                                 .'<div class="mov-arch-img" style="background-image:url('.$featured_img_url.')"></div>'
                                                             .'</a>'
                                                             .'<div class="mov-arch-content">'
-                                                                .'<h4>'.get_the_title().'</h4>'
+                                                                .'<h4 class="news-title"><a href="'.get_the_permalink().'">'.get_the_title().'</a></h4>'
                                                                 .'<div class="mov-extra-info-text">'.$movie_release_year.', '.$movie_country.'</div>'
                                                                 .'<div class="mov-extra-info-text">'.implode(',', $single_movie_cat_arr).'</div>'
                                                             .'</div>'

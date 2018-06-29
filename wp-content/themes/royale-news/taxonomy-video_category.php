@@ -43,22 +43,19 @@
 
                                     $parent_cat_id = get_queried_object()->term_id;
 
-                                    // echo '<pre>'.print_r($vid_category, true).'</pre>';
-
-
-                                    $vid_cat_html = '<ul class="filter-btns filters">';
-                                    $vid_cat_html.='<li><button type="button" class="filtr-button filtr" data-filter="all">All</button></li>';
+                                    $vid_cat_html = '<ul class="filters-filteringModeMulti filter-btns filters">';
+/*                                     $vid_cat_html.='<li><button type="button" class="filtr-button filtr" data-filter="all">All</button></li>'; */
                                     foreach($vid_category as $current_cat){
                                         if($current_cat->parent == $parent_cat_id){
-                                            $vid_cat_html.='<li><button class="filtr-button filtr"  data-filter="'.$current_cat->slug.'" type="button" >'.$current_cat->name.'</button></li>';
-                                        }
+											$vid_cat_html.='<li><label><input type="checkbox"  value=".'.$current_cat->slug.'" class="filtr-button filter-check filtr" /><span class="fancy-filter">'.$current_cat->name.'</span></label></li>';
+										}
                                     }
                                     $vid_cat_html.='</ul>';
 
                                     echo $vid_cat_html;
 
 								/* Start the Loop */
-                                echo '<div class="row filtr-container-video">';
+                                echo '<div id="filter-container" class="row filtr-container-video filteringModeMulti">';
                                 $video_list_html='';
                                 
                                 while ( have_posts() ) : the_post();
@@ -82,15 +79,15 @@
                                         $featured_img_url = get_the_post_thumbnail_url($current_post_id);
                                     }
 									$vid_album = get_post_meta( $current_post_id, 'vid_album', true );
-                                    $video_country = get_post_meta( $current_post_id, 'vid_country', true );
-                                    $video_list_html.='<section data-category="'.implode(',', $single_video_cat_arr).'" class="filtr-item col-sm-3 archive-single-vid">'
+                                    /* $video_country = get_post_meta( $current_post_id, 'vid_country', true ); */
+                                    $video_list_html.='<section class=" filtr-item mix '.implode(' ', $single_video_cat_arr).' col-sm-3 archive-single-vid">'
 															.'<div class="vid-arch-single-wrap">'
 																.'<a href="'.get_the_permalink().'">'
 																	.'<div class="vid-arch-img" style="background-image:url('.$featured_img_url.')"></div>'
 																.'</a>'
-																.'<div class="vid-arch-content">'
-																	.'<h4>'.get_the_title().'</h4>'
-																	.'<div class="vid-extra-info-text">'.$video_release_year.' '.$video_country.'</div>'
+																.'<div class="mov-arch-content">'
+																	.'<h4> <a title="'.get_the_title().'" href="'.get_the_permalink().'">'.get_the_title().'</a></h4>'
+																	.'<div class="vid-extra-info-text">'.$video_release_year.' </div>'
 																	.'<div class="vid-extra-info-text">'.implode(',', $single_video_cat_arr).'</div>'
 																.'</div>'
 															.'</div><!--vid-arch-single-wrap-->'

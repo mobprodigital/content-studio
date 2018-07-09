@@ -1,7 +1,22 @@
-if (jQuery('.filtr-container-movie').length > 0) {
-    var filterizd = jQuery('.filtr-container-movie').filterizr();
-}
+(function () {
+    var containerEl = document.querySelector('.filteringModeMulti');
 
-if (jQuery('.filtr-container-videosong').length > 0) {
-    var filterizd_video_song = jQuery('.filtr-container-videosong').filterizr();
-}
+    var mixer = mixitup(containerEl);
+
+
+    var filterCheck = document.querySelectorAll('.filter-check');
+    if (filterCheck.length > 0) {
+        for (var i = 0; i < filterCheck.length; i++) {
+            filterCheck[i].addEventListener('change', function () {
+
+                valueArr = [];
+                for (var j = 0; j < filterCheck.length; j++) {
+                    if (filterCheck[j].checked) {
+                        valueArr.push(filterCheck[j].value);
+                    }
+                }
+                mixer.filter(valueArr.length > 0 ? valueArr.join(',') : 'all');
+            });
+        }
+    }
+}())

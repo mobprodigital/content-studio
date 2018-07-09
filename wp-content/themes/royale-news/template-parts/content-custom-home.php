@@ -33,9 +33,12 @@
 						'post_type'=> $po,
 						'posts_per_page'=>6,
 						));
+
 						$all_post_arr[$po] = array();
+						
 						if($movies_posts->have_posts() ) : while ( $movies_posts->have_posts() ) : $movies_posts->the_post(); 
-							$single_post_array = array(
+							
+						$single_post_array = array(
 								'title' => get_the_title(),
 								'thumbnail_url' => get_the_post_thumbnail_url(),
 								'permalink' => get_the_permalink(),
@@ -45,12 +48,14 @@
 								'language' => get_the_terms(get_the_ID(), 'language_category')
 							);
 							$all_post_arr[$po][] = $single_post_array;
-					endwhile;
-				endif;
+							endwhile;
+						endif;
 				}
+				
 			}
 
 			// echo '<pre>'.print_r($all_post_arr, true).'</pre>';
+			
 
 			?>
 
@@ -80,6 +85,7 @@
 										}
 										echo $slider_html;
 									}
+									
 								?>
 								
 							</div>
@@ -113,6 +119,8 @@
 								if(count($all_post_arr) > 0){
 									
 									foreach ($all_post_arr as $post_key => $post_arr) {
+
+										
 										$content_html.= '<section class="news-section">'.
 															'<div class="news-section-info clearfix">'
 															.'<h3 class="section-title">'.$post_key.'</h3>'
@@ -123,15 +131,17 @@
 											foreach ($post_arr as $single_post_key => $single_post_value) {
 
 												$lang_arr = array();
-
+												
 												if(count($single_post_value['language']) > 0){
-													foreach ($single_post_value['language'] as $lang_key) {
-														array_push($lang_arr, $lang_key->name);
+													for($x = 0 ; $x < count($single_post_value['language']);$x++) {
+
+														
+														$lang_arr[] = $single_post_value['language'][$x]->name;
 													}
 												}
 												$content_html.= '<article class="col-sm-6">'
 																	.'<div class="small-news-content single-post-wrap">'
-																		.'<div class="single-post-imgae" style="background-image:url('. $single_post_value['thumbnail_url'] .')"></div>'
+																		.'<div class="single-post-imgae" style="background-image:url('. $single_post_value['thumbnail_url'] .')"><a href="'.$single_post_value['permalink'].'" class="post-full-img-link"></a></div>'
 																		.'<h4 class="news-title"><a href="'.$single_post_value['permalink'].'">'.$single_post_value['title'].'</a></h4>'
 																		.'<div class="entry-meta">'
 																			.'<span class="posted-on"> <i class="far fa-clock"></i>
@@ -146,12 +156,13 @@
 											}
 											$content_html.='</div><!-- row clearfix -->';
 										}
-
+										
 
 										$content_html.='</section>';
 									}
 								}
 								echo $content_html;
+								
 							?>
 						</div> <!-- col-sm-8 -->
 						<div class="col-sm-4 sidebar">
@@ -187,9 +198,9 @@
 									$recent_posts = wp_get_recent_posts();
 									
 									foreach( $recent_posts as $recent ){
-										echo '<li class="cat-item cat-item-4">
-											<a href="' . get_permalink($recent["ID"]) . '">' .$recent["post_title"].'</a> 
-										</li> ';
+										echo '<li class="cat-item cat-item-4">'
+											.'<a href="' . get_permalink($recent["ID"]) . '">' .$recent["post_title"].'</a>'
+										.'</li> ';
 									}
 									wp_reset_query();
 								?>
@@ -219,5 +230,7 @@
 					</div> <!-- row -->
 				</section>
 			</section> <!-- clearfix section -->
+			
 <?php
+
 get_footer();

@@ -275,7 +275,6 @@ require get_template_directory() . '/themebeez/widgets/widget-init.php';
 
 
 // custom post Movie Start
-
 function movie_custom_post() {
 	$labels = array(
 	  'name'               => _x( 'Movies', 'post type general name' ),
@@ -331,7 +330,6 @@ function taxonomies_movie() {
 // movies category texonomy end
 
 // movie metabox start
-
 add_action( 'add_meta_boxes', 'product_price_box' );
 function product_price_box() {
 
@@ -412,9 +410,88 @@ function movie_info_save_fun( $post_id ) {
 
   $mov_embedded_code = $_POST['mov_embedded_code'];
   update_post_meta( $post_id, 'mov_embedded_code', $mov_embedded_code );
-  }
+} // movie metabox end
 
-// movie metabox end
+//custom movie widgets start //
+
+// Register and load the widget
+function movie_load_widget() {
+    register_widget( 'movie_widget' );
+	}
+	add_action( 'widgets_init', 'movie_load_widget' );
+	
+	// Creating the widget 
+	class movie_widget extends WP_Widget {
+	
+	function __construct() {
+	parent::__construct(
+	
+	// Base ID of your widget
+	'movie_widget', 
+	
+	// Widget name will appear in UI
+	__('Movie Widget', 'movie_widget_domain'), 
+	
+	// Widget description
+	array( 'description' => __( 'Movie Widgets', 'movie_widget_domain' ), ) 
+	);
+	}
+	
+	// Creating widget front-end
+	
+	public function widget( $args, $instance ) {
+	$title = apply_filters( 'widget_title', $instance['title'] );
+	
+	// before and after widget arguments are defined by themes
+	echo $args['before_widget'];
+	if ( ! empty( $title ) )
+	echo $args['before_title'] . $title . $args['after_title'];
+	
+	// This is where you run the code and display the output
+	echo __( 'Hello, World!', 'movie_widget_domain' );
+	echo $args['after_widget'];
+	}
+			
+	// Widget Backend 
+	public function form( $instance ) {
+	if ( isset( $instance[ 'title' ] ) ) {
+	$title = $instance[ 'title' ];
+	}
+	else {
+	$title = __( 'New title', 'movie_widget_domain' );
+	}
+	// Widget admin form
+	?>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+	</p>
+	<?php 
+	}
+		
+	// Updating widget replacing old instances with new
+	public function update( $new_instance, $old_instance ) {
+	$instance = array();
+	$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+	return $instance;
+	}
+} // Class movie_widget ends here
+//custom movie widgets end 
+
+//custom movie widgets area start
+function movie_widgets_init() {
+    register_sidebar( array(
+        'name' => __( 'Movie Sidebar', 'movie' ),
+        'id' => 'movie-sidebar',
+        'before_widget' => '<div>',
+        'after_widget' => '</div>',
+        'before_title' => '<h1>',
+        'after_title' => '</h1>',
+    ) );
+}
+add_action( 'widgets_init', 'movie_widgets_init' );
+//custom movie widgets area end
+
 // custom post Movie End
 
 
@@ -566,14 +643,91 @@ function videosong_info_save_fun( $post_id ) {
   $vidsong_embedded_code = $_POST['vidsong_embedded_code'];
   update_post_meta( $post_id, 'vidsong_embedded_code', $vidsong_embedded_code );
   
-}
+}// vidsong metabox end
 
-// vidsong metabox end
+//custom video song widgets start 
+
+// Register and load the widget
+function vidsong_load_widget() {
+		register_widget( 'vidsong_widget' );
+	}
+	add_action( 'widgets_init', 'vidsong_load_widget' );
+
+	// Creating the widget 
+	class vidsong_widget extends WP_Widget {
+
+	function __construct() {
+	parent::__construct(
+
+	// Base ID of your widget
+	'vidsong_widget', 
+
+	// Widget name will appear in UI
+	__('Video Song Widget', 'vidsong_widget_domain'), 
+
+	// Widget description
+	array( 'description' => __( 'Video Song Widgets', 'vidsong_widget_domain' ), ) 
+	);
+	}
+
+	// Creating widget front-end
+
+	public function widget( $args, $instance ) {
+	$title = apply_filters( 'widget_title', $instance['title'] );
+
+	// before and after widget arguments are defined by themes
+	echo $args['before_widget'];
+	if ( ! empty( $title ) )
+	echo $args['before_title'] . $title . $args['after_title'];
+
+	// This is where you run the code and display the output
+	echo __( 'Hello, World!', 'vidsong_widget_domain' );
+	echo $args['after_widget'];
+	}
+			
+	// Widget Backend 
+	public function form( $instance ) {
+	if ( isset( $instance[ 'title' ] ) ) {
+	$title = $instance[ 'title' ];
+	}
+	else {
+	$title = __( 'New title', 'vidsong_widget_domain' );
+	}
+	// Widget admin form
+	?>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+	</p>
+	<?php 
+	}
+		
+	// Updating widget replacing old instances with new
+	public function update( $new_instance, $old_instance ) {
+	$instance = array();
+	$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+	return $instance;
+	}
+} // Class vidsong_widget ends here
+//custom video song widgets end
+
+//custom Video Song widgets area start
+function vidsong_widgets_init() {
+	register_sidebar( array(
+		'name' => __( 'Video Song Sidebar', 'vidsong' ),
+		'id' => 'Video Song-sidebar',
+		'before_widget' => '<div>',
+		'after_widget' => '</div>',
+		'before_title' => '<h1>',
+		'after_title' => '</h1>',
+	) );
+}
+add_action( 'widgets_init', 'vidsong_widgets_init' );
+//custom Video Song widgets area end
 
 // custom post video Song End
 
 // language category texonomy start
-
 
 //....... custom post Video Start (Third Custom Post Position 3) .....//
 
@@ -606,7 +760,6 @@ function video_custom_post() {
   add_action( 'init', 'video_custom_post' );
 
 // Video category texonomy start
-
 function taxonomies_video() {
 	$labels = array(
 	  'name'              => _x( 'Video Categories', 'taxonomy general name' ),
@@ -632,7 +785,6 @@ function taxonomies_video() {
 // Video category texonomy end
 
 // Video metabox start
-
 add_action( 'add_meta_boxes', 'product_video_box' );
 function product_video_box() {
 
@@ -698,12 +850,91 @@ function video_info_save_fun( $post_id ) {
   
    $vid_embedded_code = $_POST['vid_embedded_code'];
   update_post_meta( $post_id, 'vid_embedded_code', $vid_embedded_code );
-  }
+  } // video metabox end
 
+  //custom video widgets start //
 
-// video metabox end
+// Register and load the widget
+function video_load_widget() {
+		register_widget( 'video_widget' );
+	}
+	add_action( 'widgets_init', 'video_load_widget' );
+	
+	// Creating the widget 
+	class video_widget extends WP_Widget {
+	
+	function __construct() {
+	parent::__construct(
+	
+	// Base ID of your widget
+	'video_widget', 
+	
+	// Widget name will appear in UI
+	__('Video Widget', 'video_widget_domain'), 
+	
+	// Widget description
+	array( 'description' => __( 'video Widgets', 'video_widget_domain' ), ) 
+	);
+	}
+	
+	// Creating widget front-end
+	
+	public function widget( $args, $instance ) {
+	$title = apply_filters( 'widget_title', $instance['title'] );
+	
+	// before and after widget arguments are defined by themes
+	echo $args['before_widget'];
+	if ( ! empty( $title ) )
+	echo $args['before_title'] . $title . $args['after_title'];
+	
+	// This is where you run the code and display the output
+	echo __( 'Hello, World!', 'video_widget_domain' );
+	echo $args['after_widget'];
+	}
+			
+	// Widget Backend 
+	public function form( $instance ) {
+	if ( isset( $instance[ 'title' ] ) ) {
+	$title = $instance[ 'title' ];
+	}
+	else {
+	$title = __( 'New title', 'video_widget_domain' );
+	}
+	// Widget admin form
+	?>
+	<p>
+	<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
+	<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+	</p>
+	<?php 
+	}
+		
+	// Updating widget replacing old instances with new
+	public function update( $new_instance, $old_instance ) {
+	$instance = array();
+	$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+	return $instance;
+	}
+} // Class video_widget ends here
+//custom video widgets end
 
+//custom video widgets area start
+function video_widgets_init() {
+    register_sidebar( array(
+        'name' => __( 'Video Sidebar', 'video' ),
+        'id' => 'video-sidebar',
+        'before_widget' => '<div>',
+        'after_widget' => '</div>',
+        'before_title' => '<h1>',
+        'after_title' => '</h1>',
+    ) );
+}
+add_action( 'widgets_init', 'video_widgets_init' );
+//custom video widgets area end
 
+// custom post video End
+
+//language category texonomy start
 function taxonomies_language() {
 	$labels = array(
 	  'name'              => _x( 'language Categories', 'taxonomy general name' ),
@@ -729,7 +960,6 @@ function taxonomies_language() {
 // language category texonomy end
 
 //enque script
-
 function add_custom_script() {
  
 	wp_register_script('mixitup_plugin', '/wp-content/themes/royale-news/js/lib/mixitup/mixitup.min.js', array('jquery'),'1.1', true);

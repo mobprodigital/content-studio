@@ -31,7 +31,7 @@
 				foreach($post_types as $po){
 					$movies_posts = new WP_Query( array(
 						'post_type'=> $po,
-						'posts_per_page'=>6,
+						'posts_per_page'=>4,
 						));
 
 						$all_post_arr[$po] = array();
@@ -61,7 +61,7 @@
 
 			<section class="container highlight-section" >
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-12">
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 							
 							<!-- Wrapper for slides -->
@@ -100,12 +100,6 @@
 							</a>
 						</div>
 					</div>
-					<aside class="col-sm-4">
-						<img src="/wp-content/uploads/2018/06/your-ad-here.jpg" alt="ad section">
-						<br>
-						<br>	
-						<img src="/wp-content/uploads/2018/06/your-ad-here.jpg" alt="ad section">
-					</aside>
 				</div> <!-- row -->
 			</section> <!-- container -->
 			<section class="clearfix section">
@@ -123,7 +117,7 @@
 										
 										$content_html.= '<section class="news-section">'.
 															'<div class="news-section-info clearfix">'
-															.'<h3 class="section-title">'.$post_key.'</h3>'
+															.'<h5 class="section-title">'.$post_key.'</h5>'
 															.'<a href="'. $post_arr[0]['archive_link'] .'" class="news-cat-link">View More <i class="fa fa-long-arrow-right"></i></a>'
 															.'</div>';
 										if(count($post_arr) > 0){
@@ -139,10 +133,10 @@
 														$lang_arr[] = $single_post_value['language'][$x]->name;
 													}
 												}
-												$content_html.= '<article class="col-sm-6">'
+												$content_html.= '<article class="col-sm-3">'
 																	.'<div class="small-news-content single-post-wrap">'
 																		.'<div class="single-post-imgae" style="background-image:url('. $single_post_value['thumbnail_url'] .')"><a href="'.$single_post_value['permalink'].'" class="post-full-img-link"></a></div>'
-																		.'<h4 class="news-title"><a href="'.$single_post_value['permalink'].'">'.$single_post_value['title'].'</a></h4>'
+																		.'<h5 class="news-title"><a href="'.$single_post_value['permalink'].'">'.$single_post_value['title'].'</a></h5>'
 																		.'<div class="entry-meta">'
 																			.'<span class="posted-on"> <i class="far fa-clock"></i>
 																				<span>'.$single_post_value['duration'].'</span>

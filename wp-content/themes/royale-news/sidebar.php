@@ -13,6 +13,6 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 ?>
 <div class="col-md-4 sticky-section">
 	<div class="row clearfix sidebar">
-		<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	<?php echo do_shortcode('[metaslider id="61"]'); ?>
 	</div><!-- .row.clearfix.sidebar -->
 </div>

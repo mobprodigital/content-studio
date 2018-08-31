@@ -23,6 +23,7 @@
 	?>
 	</div><!-- .container -->
 	<div class="container">
+	<h1>Hello</h1>
 		<div class="row clearfix section">
 			<?php
 				$sidebar_position = royale_news_get_option( 'royale_news_sidebar_position' );

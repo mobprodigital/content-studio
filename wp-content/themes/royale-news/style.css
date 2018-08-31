@@ -955,3 +955,25 @@ table.table.table-inline{
     width: 100%;
     height: 500px;
 }
+
+.carousel-inner img {
+	width: 100%;
+	height: 415px;
+}
+
+/* CSS HEADING */
+
+.text-white{ color: #ffffff; }
+.text-dark{ color: #000000; }
+.bg-white{ background-color: #ffffff; }
+.bg-red{ background-color: red; }
+.sec{ padding: 60px 0; }
+
+.sec-title{
+	font-size: 45px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.sec-content { font-weight: 300; }
+.content-media{ width: 40px; height: 40px;}
+/* CSS HEADING END */

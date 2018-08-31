@@ -150,7 +150,7 @@ function royale_news_widgets_init() {
 		'name'          => esc_html__( 'Footer Widget Area', 'royale-news' ),
 		'id'            => 'sidebar-4',
 		'description'   => esc_html__( 'Add only four widgets here.', 'royale-news' ),
-		'before_widget' => '<div id="%1$s" class="col-md-3 widget %2$s">',
+		'before_widget' => '<div id="%1$s" class="col-md-4 widget %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<div class="widget-info"><h3 class="widget-title">',
 		'after_title'   => '</h3></div>',

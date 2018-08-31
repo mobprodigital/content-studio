@@ -15,6 +15,7 @@
 get_header(); ?>
 	<main class="main-container">
 		<div class="container">
+		<h1>Hello This is ME</h1>
 			<?php
 				$enable_feature = royale_news_get_option( 'royale_news_enable_featured_post' );
 				if ( is_active_sidebar( 'sidebar-2' ) && $enable_feature == 1 ) {

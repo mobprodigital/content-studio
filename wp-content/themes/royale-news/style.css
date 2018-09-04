@@ -688,8 +688,6 @@ table.table.table-inline{
     transform-origin: top right;
 }
 
-
-
 .curved-sec-white{
 	position: relative;
 	overflow: hidden;
@@ -706,7 +704,6 @@ table.table.table-inline{
 	bottom: 0;
 }
 
-
 .curved-sec-white::before {
 	left: 0;
     z-index: 1;
@@ -721,7 +718,54 @@ table.table.table-inline{
     transform-origin: top right;
 }
 
+.curved-sec-black{
+	position: relative;
+	overflow: hidden;
+}
 
+.curved-sec-black::before,
+.curved-sec-black::after{
+	display: block;
+    position: absolute;
+    width: 51%;
+    height: 60px;
+    background-color: #000000;;
+    content: '';
+	bottom: 0;
+}
+
+.curved-sec-black::before {
+	left: 0;
+    z-index: 1;
+    transform: rotate(4.5deg);
+    transform-origin: top left;
+}
+
+.curved-sec-black::after {	
+	right: 0;
+    z-index: 1;
+    transform: rotate(-4.5deg);
+    transform-origin: top right;
+}
+
+.about-img-wrap{
+	text-align: Center;
+
+}
+.about-img-wrap img{
+	max-width: 100%;
+	width: 75%;
+}
+.text-span {
+    font-weight: bold;
+    font-size: 20px;
+    color: #45afe3;
+}
+.text-sub-title {
+    font-weight: bold;
+    font-size: 28px;
+    color: #45afe3;
+}
 /* CSS HEADING */
 
 .text-white{ color: #ffffff; }

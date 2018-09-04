@@ -86,19 +86,14 @@
 		</div>
 	</header> <!-- slider-header -->
 	
-	<section class=" sec bg-defult">
-		<div class="container">
-			<div class="bg-defult"> 
-				<div class="sec-title text-dark">Who We are</div>
-			</div>
-		</div>
-	</section> <!-- Who We are section -->
+
 
 	
-	<section class=" sec bg-cyan"> 
+	<section class="page-title-sec"> 
 		<div class="container"> 
-			<div class="sec-title text-white">Concept, Content, Customization</div>
-				<div class="sec-content text-white">We at “Content Studio” make sure that you explore the incredible media handpicked and incredible videos t
+			<h1 class="page-title">Who we are ?</h1>
+			<h3 class="page-sub-title">Concept, Content, Customization</h3>
+				<div class="page-text">We at “Content Studio” make sure that you explore the incredible media handpicked and incredible videos t
 					hat will be there to entertain you. We deal into content aggregation, production, and redistribution of content.</div>
 				</div>
 		</div>

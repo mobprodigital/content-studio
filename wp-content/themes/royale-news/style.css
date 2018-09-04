@@ -639,6 +639,19 @@ table.table.table-inline{
 	height: 415px;
 }
 
+.page-title-sec {
+    background-color: #45afe3;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+	color: #fff;
+	font-family: 'Lato', sans-serif;
+}
+
+
 /* CSS HEADING */
 
 .text-white{ color: #ffffff; }
@@ -654,6 +667,9 @@ table.table.table-inline{
 	text-align: center;
 	margin-bottom: 20px;
 }
+
+
+
 .sec-content { font-weight: 300; font-size: larger; }
 .content-media{ width: 170px; height: 170px; margin-left: 25%;}
 .content-text { margin: 0 0 10px; font-size: large; font-weight: bold; text-align: center; }

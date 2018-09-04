@@ -26,7 +26,7 @@ define('DB_NAME', 'contentcustom');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'Jobs@786');
+define('DB_PASSWORD', 'www.994.com');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

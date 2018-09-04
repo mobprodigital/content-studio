@@ -24,11 +24,9 @@
     // $('.carousel').carousel()
 
     $(document).ready(function() {
-        $("#lightSlider").lightSlider({
+        $("#lightSlider, #hp-client-slider").lightSlider({
             keyPress: false,
             controls: true,
-            prevHtml: '<',
-            nextHtml: '>',
         }); 
       });
 }(jQuery))

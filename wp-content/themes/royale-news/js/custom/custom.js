@@ -21,5 +21,14 @@
     } */
 
 
-    $('.carousel').carousel()
+    // $('.carousel').carousel()
+
+    $(document).ready(function() {
+        $("#lightSlider").lightSlider({
+            keyPress: false,
+            controls: true,
+            prevHtml: '<',
+            nextHtml: '>',
+        }); 
+      });
 }(jQuery))

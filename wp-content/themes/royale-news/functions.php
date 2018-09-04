@@ -963,8 +963,11 @@ function taxonomies_language() {
 function add_custom_script() {
  
 	wp_register_script('mixitup_plugin', '/wp-content/themes/royale-news/js/lib/mixitup/mixitup.min.js', array('jquery'),'1.1', true);
-	wp_register_script('custom_script', '/wp-content/themes/royale-news/js/custom/custom.js', array('jquery', 'mixitup_plugin'),'1.1', true);
+	wp_register_script('light_slider', '/wp-content/themes/royale-news/js/lib/light-slider/js/lightslider.min.js', array('jquery'),'1.1', true);
+	wp_register_script('custom_script', '/wp-content/themes/royale-news/js/custom/custom.js', array('jquery', 'mixitup_plugin', 'light_slider'),'1.1', true);
 	wp_enqueue_script('filterizr_plugin');
 	wp_enqueue_script('custom_script');
+
+	wp_enqueue_style( 'light_slider_css', get_template_directory_uri() . '/js/lib/light-slider/css/lightslider.css' );
 }	  
 add_action( 'wp_enqueue_scripts', 'add_custom_script' ); 

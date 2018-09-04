@@ -21,7 +21,7 @@
 <?php 
 
 		$all_post_arr = array();
-		 $post_types = get_post_types(array(
+		$post_types = get_post_types(array(
 			'public'   => true,
 			'_builtin' => false
 			));

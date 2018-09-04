@@ -15,43 +15,12 @@
 
 	get_header(); 
 ?>
-	<?php 
-		$all_post_arr = array();
-		$post_types = get_post_types(array(
-			'public'   => true,
-			'_builtin' => false
-			));
-			
-			if(count($post_types) > 0){
-				foreach($post_types as $po){
-					$movies_posts = new WP_Query( array(
-						'post_type'=> $po,
-						'posts_per_page'=>4,
-						));
-
-						$all_post_arr[$po] = array();
-						
-						if($movies_posts->have_posts() ) : while ( $movies_posts->have_posts() ) : $movies_posts->the_post(); 
-							
-						$single_post_array = array(
-								'title' => get_the_title(),
-								'thumbnail_url' => get_the_post_thumbnail_url(),
-								'permalink' => get_the_permalink(),
-								'duration' => get_post_meta(get_the_ID(), ($po == 'movie' ? 'mov_duration' : ($po== 'video' ? 'vid_duration' : ($po == 'videosong' ? 'vidsong_duration' : null))), true),
-								'post_name' => $po,
-								'archive_link' => get_post_type_archive_link($po),
-								'language' => get_the_terms(get_the_ID(), 'language_category')
-							);
-							$all_post_arr[$po][] = $single_post_array;
-							endwhile;
-						endif;
-				}
-			}	
-	?>
+	
 	
 <main class="main-container">
 	<header class="slider-header">
-		<div id="home-slider" class="carousel slide" data-ride="carousel">
+		<!-- <div id="home-slider" class="carousel slide" data-ride="carousel"> -->
+		<div id="home-slider">
 			<div class="carousel-inner carousel-inner-slide">
 				<div class="item item-slider active">
 				<img class="d-block w-100" src="/wp-content/uploads/2018/06/fitness-2.jpg" alt="First slide">
@@ -89,19 +58,23 @@
 
 
 	
-	<section class="page-title-sec"> 
+	<section class="page-title-sec curved-sec-gray"> 
 		<div class="container"> 
 			<h1 class="page-title">Who we are ?</h1>
-			<h3 class="page-sub-title">Concept, Content, Customization</h3>
+		</div>
+	</section> <!-- section end -->
+	
+
+	<section class="sec bg-greengray curved-sec-white curved-sec">
+	<h3 class="sec-title">Concept, Content, Customization</h3>
+	<div class="container">
 				<div class="page-text">We at “Content Studio” make sure that you explore the incredible media handpicked and incredible videos t
 					hat will be there to entertain you. We deal into content aggregation, production, and redistribution of content.</div>
 				</div>
-		</div>
-	</section> <!-- section end -->
-	<div class="vactor-shape vactor-cyan">
 	</div>
+	</section>
 
-	<section class="sec bg-white">
+	<section class="sec bg-white curved-sec-gray curved-sec">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
@@ -138,8 +111,7 @@
 			</div> <!-- row -->
 			</div>
 	</section> <!-- section end -->
-	<div class="vactor-shape vactor-white">
-	</div>
+	
 
 	<section class=" sec bg-greengray"> 
 		<div class="container"> 
@@ -147,52 +119,62 @@
 				<div class="sec-content text-dark">Videos are the best way to entertain as well as to explore new things, so if you are the one who loves to be
 					entertained by something good, then our videos section is for you. Here we have dierent genres of videos
 					such as food, kids, and lifestyle.</div>
+					<br><br>
 			<div>
 				<?php 
-					$content_html = '';
-					if(count($all_post_arr) > 0){
-						foreach ($all_post_arr as $post_key => $post_arr) {
-							
-							$content_html.= '<section class="news-section">'.
-												'<div class="news-section-info clearfix">'
-												.'<h5 class="section-title">'.$post_key.'</h5>'
-												.'<a href="'. $post_arr[0]['archive_link'] .'" class="news-cat-link">View More <i class="fa fa-long-arrow-right"></i></a>'
-												.'</div>';
-							if(count($post_arr) > 0){
-								$content_html.='<div class="row clearfix">';
-								foreach ($post_arr as $single_post_key => $single_post_value) {
-
-									$lang_arr = array();
-									
-									if(count($single_post_value['language']) > 0){
-										for($x = 0 ; $x < count($single_post_value['language']);$x++) {
-
+							$all_post_arr = array();
+							$post_types = get_post_types(array(
+								'public'   => true,
+								'_builtin' => false
+								));
+								
+								if(count($post_types) > 0){
+									foreach($post_types as $po){
+										$movies_posts = new WP_Query( array(
+											'post_type'=> $po,
+											'posts_per_page'=>4,
+											));
+					
+											$all_post_arr[$po] = array();
 											
-											$lang_arr[] = $single_post_value['language'][$x]->name;
-										}
+											if($movies_posts->have_posts() ) : while ( $movies_posts->have_posts() ) : $movies_posts->the_post(); 
+												
+											$single_post_array = array(
+													'title' => get_the_title(),
+													'thumbnail_url' => get_the_post_thumbnail_url(),
+													'permalink' => get_the_permalink(),
+													'duration' => get_post_meta(get_the_ID(), ($po == 'movie' ? 'mov_duration' : ($po== 'video' ? 'vid_duration' : ($po == 'videosong' ? 'vidsong_duration' : null))), true),
+													'post_name' => $po,
+													'archive_link' => get_post_type_archive_link($po),
+													'language' => get_the_terms(get_the_ID(), 'language_category')
+												);
+												$all_post_arr[$po][] = $single_post_array;
+												endwhile;
+											endif;
 									}
-									$content_html.= '<article class="col-sm-3">'
-														.'<div class="small-news-content single-post-wrap">'
-															.'<div class="single-post-imgae" style="background-image:url('. $single_post_value['thumbnail_url'] .')"><a href="'.$single_post_value['permalink'].'" class="post-full-img-link"></a></div>'
-															.'<h5 class="news-title"><a href="'.$single_post_value['permalink'].'">'.$single_post_value['title'].'</a></h5>'
-															.'<div class="entry-meta">'
-																.'<span class="posted-on"> <i class="far fa-clock"></i>
-																	<span>'.$single_post_value['duration'].'</span>
-																</span>
-																<span class="byline"> <i class="fas fa-language"></i>
-																	<span class="author vcard">'.implode(',', $lang_arr).'</span>
-																</span>
-															</div>'
-														.'</div>'
-													.'</article> <!-- col-sm-6 -->';
+									
 								}
-								$content_html.='</div><!-- row clearfix -->';
-							}
-								$content_html.='</section>';
-						}
-					}
-				echo $content_html;
+					
+								// echo '<pre>'.print_r($all_post_arr, true).'</pre>';
 
+								if(count($all_post_arr) > 0){
+									$slider_html = '<ul id="lightSlider">';
+									
+									foreach ($all_post_arr as $key => $value) {
+										// echo '<pre>'.print_r($value[0]['thumbnail_url'], true).'</pre>';
+										$slider_html.= '<li>'
+															.'<div class="hp-single-slide" style="background-image: url('. $value[0]['thumbnail_url'] .');">'
+															.'<a class="hp-slider-link" href="'.$value[0]['permalink'].'">'
+																.'<span class="hp-slide-name">'.$value[0]['post_name'].'</span>'
+															.'</a>'
+															.'</div>'
+															
+														.'</li>';
+									}
+									$slider_html.='</ul>';
+									echo $slider_html;
+								}
+					
 			?>
 			</div> <!-- display categories of post -->
 		</div> <!-- container -->

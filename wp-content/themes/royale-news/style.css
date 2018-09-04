@@ -640,15 +640,82 @@ table.table.table-inline{
 }
 
 .page-title-sec {
-    background-color: #45afe3;
+	background-color: #45afe3;
 }
 
 .page-title {
     text-align: center;
     font-size: 40px;
     font-weight: bold;
-	color: #fff;
+    margin: 60px 0 90px 0;
+    text-transform: uppercase;
+    color: #fff;
 	font-family: 'Lato', sans-serif;
+	
+}
+
+.curved-sec-gray{
+	position: relative;
+	overflow: hidden;
+}
+
+.curved-sec-gray::before,
+.curved-sec-gray::after{
+	display: block;
+    position: absolute;
+    width: 51%;
+    height: 60px;
+    background:#daded5;
+    content: '';
+	bottom: 0;
+}
+
+
+.curved-sec-gray::before {
+	left: 0;
+    z-index: 1;
+    transform: rotate(4.5deg);
+    transform-origin: top left;
+}
+
+.curved-sec-gray::after {	
+	right: 0;
+    z-index: 1;
+    transform: rotate(-4.5deg);
+    transform-origin: top right;
+}
+
+
+
+.curved-sec-white{
+	position: relative;
+	overflow: hidden;
+}
+
+.curved-sec-white::before,
+.curved-sec-white::after{
+	display: block;
+    position: absolute;
+    width: 51%;
+    height: 60px;
+    background-color: #ffffff;;
+    content: '';
+	bottom: 0;
+}
+
+
+.curved-sec-white::before {
+	left: 0;
+    z-index: 1;
+    transform: rotate(4.5deg);
+    transform-origin: top left;
+}
+
+.curved-sec-white::after {	
+	right: 0;
+    z-index: 1;
+    transform: rotate(-4.5deg);
+    transform-origin: top right;
 }
 
 
@@ -661,14 +728,44 @@ table.table.table-inline{
 .bg-greengray{ background-color: #daded5; }
 .bg-red{ background-color: red; }
 .sec{ padding: 60px 0; }
+.sec.curved-sec{ padding: 60px 0 110px 0; }
 
 .sec-title{
-	font-size: 45px;
+	font-size: 35px;
 	text-align: center;
 	margin-bottom: 20px;
+	font-weight: bold;
+	font-family: 'Lato', sans-serif;
 }
 
-
+ul#lightSlider > li {
+	height: 200px;
+	position: relative;
+}
+.hp-single-slide > a {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+.hp-single-slide > a > span{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 15px;
+	background-color: rgba(0, 0, 0, 0.466);
+	padding: 5px 0;
+}
+.hp-single-slide {
+	height: 100%;
+	position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .sec-content { font-weight: 300; font-size: larger; }
 .content-media{ width: 170px; height: 170px; margin-left: 25%;}

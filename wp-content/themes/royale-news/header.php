@@ -157,4 +157,25 @@
 	* @hooked royale_news_breadcrumb_action - 10
 	*/
 	do_action( 'royale_news_breadcrumb' );
+	$curr_page_id = get_queried_object_id();
+	if($curr_page_id != 398){
+		if ( has_post_thumbnail( $page_id ) ) :
+			$image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $page_id ), 'optional-size' );
+			$image = $image_array[0];
+		else :
+			$image = get_template_directory_uri() . '/images/default-background.jpg';
+		endif;
+		
 ?>
+<header class="page-header-custom">
+	<div class="featured-img-page" style="background-image:url('<?php echo $image; ?>')">
+		
+	</div>
+	<div class="page-title-sec curved-sec-gray">
+		<div class="container"> 
+			<h1 class="page-title"><?php echo get_the_title($curr_page_id); ?></h1>
+		</div>
+	</div>
+</header>
+
+<?php } ?>

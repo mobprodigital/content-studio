@@ -44,3 +44,17 @@ header.header>div.col-md-4 {
     width: 71px;
     text-align: center;
 }
+
+header.header.clear {
+    background: #fff;
+}
+
+.featured-img-page {
+    height: 270px;
+    background-position: center;
+    background-size: cover;
+}
+
+main.main-container {
+    background-color: #daded5;
+}

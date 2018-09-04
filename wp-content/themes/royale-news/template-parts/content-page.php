@@ -9,25 +9,9 @@
 
 ?>
 <div class="col-md-12" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="news-section-info clearfix">
-		<h3 class="section-title">
-			<?php
-				the_title();
-			?>
-		</h3><!-- .section-title -->
-	</div><!-- .news-section-info -->
+	
 	<div class="single-news-content">
-		<?php
-			if( has_post_thumbnail() ) :
-		?>
-			<div class="news-image">
-				<?php		
-					the_post_thumbnail( 'full', array( 'class' => 'img-responsive' ) );
-				?>
-			</div><!-- .news-image -->
-		<?php
-			endif;
-		?>
+		
 		<div class="news-detail clearfix">
 			<div class="news-content">
 				<?php

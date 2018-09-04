@@ -86,11 +86,11 @@ if( ! function_exists( 'royale_news_header_before_action' ) ) :
 
 	 	if( has_header_image() ) :
 	?>
-			<header class="header" style="background-image: url(<?php header_image(); ?>); background-size: cover; background-position: center;" >
+			<header class="header clear" style="background-image: url(<?php header_image(); ?>); background-size: cover; background-position: center;" >
 	<?php
 		else :
 	?>
-			<header class="header">
+			<header class="header clear">
 	<?php
 		endif;
  	}

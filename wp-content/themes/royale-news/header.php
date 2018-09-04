@@ -169,7 +169,9 @@
 ?>
 <header class="page-header-custom">
 	<div class="featured-img-page" style="background-image:url('<?php echo $image; ?>')">
-		
+		<div class="comp-slogan">
+			Company tag line
+		</div>
 	</div>
 	<div class="page-title-sec curved-sec-gray">
 		<div class="container"> 

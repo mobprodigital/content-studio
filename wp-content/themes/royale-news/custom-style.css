@@ -53,6 +53,18 @@ header.header.clear {
     height: 270px;
     background-position: center;
     background-size: cover;
+    position: relative;
+}
+
+.featured-img-page > .comp-slogan{
+    position: absolute;
+    right: 0;
+    width: 40%;
+    top: 36%;
+    padding: 15px 20px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.74);
+    font-size: 30px;
 }
 
 main.main-container {

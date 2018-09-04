@@ -809,9 +809,10 @@ a:active {
 	margin-right: 10px;
 }
 .widget.widget_recent_entries ul li a::before {
-	content: '\f044';
+	content: '\f054';
 	font-family: 'FontAwesome';
 	margin-right: 10px;
+	color: #45afe3;
 }
 .widget.widget_rss ul li a::before {
 	content: '\f09e';

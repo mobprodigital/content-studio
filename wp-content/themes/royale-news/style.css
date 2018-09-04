@@ -535,10 +535,11 @@ a:hover, a:active {
 .mov-arch-single-wrap {
     border-radius: 3px;
     overflow: auto;
-    box-shadow: 0px 0px 2px 2px #e8e8e8;
+    box-shadow: 0px 0px 2px 2px #b3b3b3;
 }
 .mov-arch-content {
-    padding: 10px 10px;
+	padding: 10px 10px;
+	background-color: #fff;
 }
 .mov-arch-content > h4 {
     font-size: 14px;

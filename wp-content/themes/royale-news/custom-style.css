@@ -70,3 +70,7 @@ header.header.clear {
 main.main-container {
     background-color: #daded5;
 }
+
+.footer .widget-title{
+    color: #ffffff;
+}

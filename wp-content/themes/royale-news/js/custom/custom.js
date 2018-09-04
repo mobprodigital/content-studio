@@ -1,5 +1,5 @@
-(function () {
-    var containerEl = document.querySelector('.filteringModeMulti');
+(function ($) {
+   /*  var containerEl = document.querySelector('.filteringModeMulti');
 
     var mixer = mixitup(containerEl);
 
@@ -18,5 +18,8 @@
                 mixer.filter(valueArr.length > 0 ? valueArr.join(',') : 'all');
             });
         }
-    }
-}())
+    } */
+
+
+    $('.carousel').carousel()
+}(jQuery))

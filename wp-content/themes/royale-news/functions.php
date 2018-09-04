@@ -969,5 +969,6 @@ function add_custom_script() {
 	wp_enqueue_script('custom_script');
 
 	wp_enqueue_style( 'light_slider_css', get_template_directory_uri() . '/js/lib/light-slider/css/lightslider.css' );
+	wp_enqueue_style( 'custom_css', get_template_directory_uri() . '/custom-style.css' );
 }	  
 add_action( 'wp_enqueue_scripts', 'add_custom_script' ); 

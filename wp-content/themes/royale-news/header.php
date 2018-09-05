@@ -157,8 +157,11 @@
 	* @hooked royale_news_breadcrumb_action - 10
 	*/
 	do_action( 'royale_news_breadcrumb' );
+
+	
+
 	$curr_page_id = get_queried_object_id();
-	if($curr_page_id != 398){
+	if(!is_front_page()){
 		if ( has_post_thumbnail( $page_id ) ) :
 			$image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $page_id ), 'optional-size' );
 			$image = $image_array[0];
@@ -175,7 +178,7 @@
 	</div>
 	<div class="page-title-sec curved-sec-gray">
 		<div class="container"> 
-			<h1 class="page-title"><?php echo get_the_title($curr_page_id); ?></h1>
+			<h1 class="page-title"><?php echo is_archive() ? the_archive_title() : get_the_title($curr_page_id); ?></h1>
 		</div>
 	</div>
 </header>

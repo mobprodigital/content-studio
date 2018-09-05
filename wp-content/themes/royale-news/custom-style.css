@@ -74,3 +74,287 @@ main.main-container {
 .footer .widget-title{
     color: #ffffff;
 }
+
+.mov-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+
+a.post-full-img-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.mov-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.mov-arch-content {
+    padding: 10px 15px;
+}
+.mov-arch-content > h4 {
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 10px;
+	font-size: 19px;
+	    text-overflow: ellipsis;
+    white-space: pre;
+    overflow: hidden;
+}
+.mov-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+ul.filter-btns > li {
+    float: left;
+    padding: 10px 3px;
+}
+ 
+ul.filter-btns {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+ul.filter-btns > li > .mixitup-control-active{
+	background-color: #f44336;
+	color:#fff;
+}
+
+input.filtr-button {
+    display: none;
+}
+
+input.filtr-button + span {
+    background-color: #f9f9f9;
+    padding: 11px 14px;
+    border: solid 1px #afafaf;
+    display: inline-block;
+    transition: all 0.25s;
+    cursor: pointer;
+}
+input.filtr-button:checked + span {
+    background-color: #f44336;
+    color: #fff;
+}
+.archive-single-mov{
+	margin-bottom: 20px;
+}
+
+table.table.table-inline{
+	width: auto;
+	max-width: auto;
+}
+
+/* Video Songs CSS Start */
+.vidsong-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+.vidsong-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.vidsong-arch-content {
+    padding: 10px 15px;
+}
+.vidsong-arch-content > h4 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+.vidsong-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Video Songs CSS end */
+
+
+/* Video CSS Start */
+.vid-arch-img {
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+}
+.vid-arch-single-wrap {
+    border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+}
+.vid-arch-content {
+    padding: 10px 15px;
+}
+.vid-arch-content > h4 {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+.vid-arch-content > .mov-extra-info-text {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* Video CSS end */
+
+.post-type-name-red {
+    display: inline-block;
+    background-color: red;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+/* header Slider Start */
+
+.sec-wrapper {
+    padding: 90px 0;
+}
+sec-title {
+    font-weight: bold;
+    font-size: 35px;
+    margin: 0 0 20px 0;
+}
+.sec-text {
+    font-weight: 100;
+}
+
+/* header Slider End */
+
+
+/*---- Video Frame Set in Custom Movie movie  ---- */
+
+.movie-frame > iframe {
+    width: 100%;
+}
+
+.post-list-wrap {
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+.post-list {
+
+    list-style-type: none;
+    margin-bottom: 30px;
+
+}
+.recent-post-custom {
+
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
+
+}
+.recent-post-title {
+
+    font-size: 17px;
+    margin: 3px 0;
+
+}
+.recent-post-thumb {
+
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+	 border-radius: 3px;
+    overflow: auto;
+    box-shadow: 0px 0px 2px 2px #e8e8e8;
+
+}
+.recent-post-meta {
+
+    display: inline-block;
+    margin-left: 13px;
+    color: #b4b4b4;
+    font-size: small;
+
+}
+
+
+.home-slider-image {
+    height: 480px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+}
+.slider-post-name {
+    background-color: #f44336;
+    color: #FFF;
+    padding: 8px 10px;
+    display: inline-block;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.slide-tite {
+    margin: 5px 0 10px 0;
+}
+a.slider-link {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 7px 16px;
+}
+a.slider-link:hover{
+	color: #f44336;
+}
+div#carousel-example-generic .carousel-control {
+    position: absolute;
+    height: 35px;
+    background-color: #fdfdfd;
+    background-image: none;
+    opacity: 1;
+    width: 35px;
+    color: #000;
+    top: 10px;
+    text-align: center;
+    padding-top: 3px;
+}
+
+div#carousel-example-generic .left.carousel-control {
+    right: 50px;
+    left: auto;
+}
+div#carousel-example-generic .right.carousel-control {
+    right: 10px;
+}
+
+.single-post-imgae {
+    height: 200px;
+	margin-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+}
+/* Logo CSS*/
+
+.custom-logo {
+    width: 165px;
+}
+
+body{
+	    background: linear-gradient(to right, #efefef63, #F2F2F2, #DBDBDB, #ffffff);
+}
+header{
+	background: linear-gradient(to top, #fffdf7, #f5e8e8, #f1e6ff57, #fdfdfd);
+}
+
+.bottom-header{
+	background: linear-gradient(to left, #cec9c9, #004e92);
+	    font-weight: bold;
+    color: white;
+}

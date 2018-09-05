@@ -119,7 +119,7 @@
 					<br><br>
 			<div>
 				<?php 
-							$all_post_arr = array();
+						/* 	$all_post_arr = array();
 							$post_types = get_post_types(array(
 								'public'   => true,
 								'_builtin' => false
@@ -150,19 +150,29 @@
 											endif;
 									}
 									
-								}
+								} */
 					
 								// echo '<pre>'.print_r($all_post_arr, true).'</pre>';
 
-								if(count($all_post_arr) > 0){
+								$videos_arr = [
+									["name" => "Bollywood", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/bollywood-1.jpg"],
+									["name" => "Hollywood", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/hollywood-1.jpg"],
+									["name" => "Tollywood", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/tollywood.jpg"],
+									["name" => "Kids", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/kids.jpg"],
+									["name" => "Health and Fitness", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/fitness-1.jpg"],
+									["name" => "Tour and travels", "link" => "", "thumbnail" => "/wp-content/uploads/2018/09/tour.jpg"],
+								];
+
+
+								if(count($videos_arr) > 0){
 									$slider_html = '<ul id="lightSlider" class="hp-lightSlider">';
 									
-									foreach ($all_post_arr as $key => $value) {
+									foreach ($videos_arr as $vid) {
 										// echo '<pre>'.print_r($value[0]['thumbnail_url'], true).'</pre>';
 										$slider_html.= '<li>'
-															.'<div class="hp-single-slide" style="background-image: url('. $value[0]['thumbnail_url'] .');">'
-															.'<a class="hp-slider-link" href="'.$value[0]['permalink'].'">'
-																.'<span class="hp-slide-name">'.$value[0]['post_name'].'</span>'
+															.'<div class="hp-single-slide" style="background-image: url('. $vid['thumbnail'] .');">'
+															.'<a class="hp-slider-link" href="'.$vid['link'].'">'
+																.'<span class="hp-slide-name">'.$vid['name'].'</span>'
 															.'</a>'
 															.'</div>'
 															

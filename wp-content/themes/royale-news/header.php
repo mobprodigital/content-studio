@@ -172,7 +172,7 @@
 ?>
 <header class="page-header-custom">
 	<div class="featured-img-page" style="background-image:url('<?php echo $image; ?>')">
-		<div class="comp-slogan">
+		<div class="comp-slogan hidden">
 			Company tag line
 		</div>
 	</div>

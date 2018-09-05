@@ -29,11 +29,7 @@
 							<?php
 							if( have_posts() ) :
 							?>
-								<div class="news-section-info clearfix">
-									<?php
-										the_archive_title( '<h3 class="section-title">', '</h3>' );
-									?>
-								</div><!-- .news-section-info -->
+								
 								<?php
 
                                     $vidsong_category = get_terms( array(

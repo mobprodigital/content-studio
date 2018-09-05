@@ -9,8 +9,25 @@
 
 	get_header(); 
 ?>
+
+
+
 	<main class="main-container">
 		<div class="container">
+
+<section class="sec bg-greengray">
+<div class="page-text">Movies are the best sort of entertainment… So we have come up with the different genres of the movies to interest
+you. At Content Studio you will nd movies of every genre whether, action, adventure, animation, comedy, animation,
+crime, drama, action, horror, romance. </br>
+We have approx 500 hour of movies as well as 1000+ movie pieces.</div>
+<ul class="arrow-list">
+	<li>500 Hour of movies</li>
+	<li>Widespread genres</li>
+	<li>1000+ Movies</li>
+</ul>
+
+	</section>
+
 			<div class="row section">
 				<?php
 					// $sidebar_position = royale_news_get_option( 'royale_news_sidebar_position' );
